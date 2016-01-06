@@ -1,0 +1,113 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#"  #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core"#>
+<#@ import namespace="System"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#@ include file="../Code/DBSchema.ttinclude"#>
+<#@ include file="../Code/MultiDocument.ttinclude"#>
+<# var manager = new Manager(Host, GenerationEnvironment, true) { OutputPath = Path.GetDirectoryName(Host.TemplateFile)}; #>
+<#
+    var dbSchema=DBSchemaFactory.GetDBSchema();
+    List<string> tableList=dbSchema.GetTablesList();
+    foreach(string tableName in tableList)
+    {
+        manager.StartBlock(tableName+".cs");
+        Table table=dbSchema.GetTableMetadata(tableName);
+#>
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Project.Model
+{
+    [Serializable]
+    public class <#=tableName#>
+    {
+        #region Constructor
+        public <#=tableName#>() { }
+
+        public <#=tableName#>(<#=table.ColumnTypeNames#>)
+        {
+<#
+        foreach(Column c in table.Columns)
+        {
+#>
+            this.<#=c.LowerColumnName#> = <#=c.LowerColumnName#>;
+<#
+        }
+#>
+        }
+        #endregion
+
+        #region Attributes
+<#
+        foreach(Column c in table.Columns)
+        {
+#>
+        private <#=GeneratorHelper.GetQuesMarkByType(c.TypeName)#> <#=c.LowerColumnName#>;
+
+        public <#=GeneratorHelper.GetQuesMarkByType(c.TypeName)#> <#=c.UpColumnName#>
+        {
+            get { return <#=c.LowerColumnName#>; }
+            set { <#=c.LowerColumnName#> = value; }
+        }
+<#
+        }
+#>
+        #endregion
+
+        #region Validator
+        public List<string> ErrorList = new List<string>();
+        private bool Validator()
+        {    
+            bool validatorResult = true;
+<#
+        foreach(Column c in table.Columns)
+        {
+            if(!c.AllowDBNull)
+            {
+                if(c.TypeName==GeneratorHelper.StringType)
+                {
+#>
+            if (string.IsNullOrEmpty(this.<#=c.UpColumnName#>))
+            {
+                validatorResult = false;
+                this.ErrorList.Add("The <#=c.UpColumnName#> should not be empty!");
+            }
+<#
+                }
+                if(c.TypeName==GeneratorHelper.DateTimeType)
+                {
+#>
+            if (this.<#=c.UpColumnName#>==null)
+            {
+                validatorResult = false;
+                this.ErrorList.Add("The <#=c.UpColumnName#> should not be empty!");
+            }
+<#
+                }
+            }
+            if(c.TypeName==GeneratorHelper.StringType)
+            {
+#>
+            if (this.<#=c.UpColumnName#> != null && <#=c.MaxLength#> < this.<#=c.UpColumnName#>.Length)
+            {
+                validatorResult = false;
+                this.ErrorList.Add("The length of <#=c.UpColumnName#> should not be greater then <#=c.MaxLength#>!");
+            }
+<#
+            }
+        }
+#>
+            return validatorResult;
+        }    
+        #endregion
+    }
+}
+<#
+        manager.EndBlock();
+    }
+    dbSchema.Dispose();
+
+    manager.Process(true);
+#>

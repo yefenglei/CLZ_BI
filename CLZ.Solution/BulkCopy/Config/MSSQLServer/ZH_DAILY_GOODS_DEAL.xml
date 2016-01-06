@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[ZH_DAILY_GOODS_DEAL]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from ZH_DAILY_GOODS_DEAL]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[SELECT [PRODUCT_SN],[PRODUCT_NAME],[AMOUNT],[COUNT],[FEE],[DEAL_DATE],[TRADE_MODE],[AVG_AMOUNT] FROM [ZH_DAILY_GOODS_DEAL];]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

@@ -1,0 +1,1223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CommonService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CLZ.BLLService" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CLZ.Common" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.common" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.Sys" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:7632/CommonService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.CLZ" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICommonService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetDataUsingDataContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetDataUsingDataContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataUsingDataContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_getAllSamples_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllSamples" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_getAllSamples_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllSamplesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_AddSample_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSample" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_AddSample_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSampleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_getSysSampleById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSysSampleById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_getSysSampleById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSysSampleByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Edit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Edit" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Edit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetMenuByModuleIdAndUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenuByModuleIdAndUserId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetMenuByModuleIdAndUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMenuByModuleIdAndUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleByParentId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleByParentId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleByParentId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleByParentIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateModule_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateModule" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateModule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateModuleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteModule_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteModule" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteModule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteModuleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditModule_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditModule" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditModule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditModuleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsModuleExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsModuleExist" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsModuleExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsModuleExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleOperateList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleOperateList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleOperateList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleOperateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateModuleOperate_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateModuleOperate" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateModuleOperate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateModuleOperateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteModuleOperateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteModuleOperateById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteModuleOperateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteModuleOperateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleOperateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleOperateById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetModuleOperateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModuleOperateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsModuleOperateExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsModuleOperateExist" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsModuleOperateExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsModuleOperateExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetPermission_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermission" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetPermission_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysRoleList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysRoleList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysRoleList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysRoleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateSysRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSysRole" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateSysRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSysRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteSysRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSysRole" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteSysRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSysRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditSysRole_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditSysRole" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditSysRole_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditSysRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysRoleById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysRoleById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysRoleById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysRoleByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsSysRoleExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsSysRoleExist" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsSysRoleExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsSysRoleExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysLogList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysLogList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysLogList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysLogListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysLogById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysLogById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysLogById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysLogByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_AddSysLog_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSysLog" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_AddSysLog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSysLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysExceptionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysExceptionList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysExceptionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysExceptionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysExceptionById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysExceptionById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysExceptionById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysExceptionByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateRight_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRight" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateRight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRightResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRightByRoleAndModule_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRightByRoleAndModule" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRightByRoleAndModule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRightByRoleAndModuleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysUserList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysUserList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysUserList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateSysUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSysUser" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_CreateSysUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSysUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteSysUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSysUser" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_DeleteSysUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSysUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditSysUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditSysUser" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_EditSysUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditSysUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysUserById" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetSysUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSysUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsSysUserExist_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsSysUserExist" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_IsSysUserExist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsSysUserExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRoleByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoleByUserId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRoleByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoleByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateSysRoleSysUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSysRoleSysUser" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateSysRoleSysUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSysRoleSysUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRefSysUserByRoleId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefSysUserByRoleId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetRefSysUserByRoleId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRefSysUserByRoleIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetUserByRoleId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByRoleId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetUserByRoleId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByRoleIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateSysRoleSysUserByRoleId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSysRoleSysUserByRoleId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_UpdateSysRoleSysUserByRoleId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSysRoleSysUserByRoleIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_get_wx_service_points_ByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:get_wx_service_points_ByName" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_get_wx_service_points_ByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:get_wx_service_points_ByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductCartList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductCartList" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductCartList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductCartListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderInfoByAddressId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderInfoByAddressId" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderInfoByAddressId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderInfoByAddressIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderTableInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderTableInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductOrderTableInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductOrderTableInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXSingleCustomerInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXSingleCustomerInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXSingleCustomerInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXSingleCustomerInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerRateOfPurchaseInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerRateOfPurchaseInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerRateOfPurchaseInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerRateOfPurchaseInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerInfoByBuyTimes_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerInfoByBuyTimes" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXCustomerInfoByBuyTimes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXCustomerInfoByBuyTimesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductSaleInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductSaleInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductSaleInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductSaleInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductCategoryInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductCategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXProductCategoryInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXProductCategoryInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXPagingProductSaleInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXPagingProductSaleInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXPagingProductSaleInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXPagingProductSaleInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXSingleProductSaleInfoByNameAndDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXSingleProductSaleInfoByNameAndDate" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXSingleProductSaleInfoByNameAndDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXSingleProductSaleInfoByNameAndDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXRegionProductInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXRegionProductInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXRegionProductInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXRegionProductInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXMonthlyProductOrderInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXMonthlyProductOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_GetWXMonthlyProductOrderInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWXMonthlyProductOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_test_InputMessage">
+    <wsdl:part name="parameters" element="tns:test" />
+  </wsdl:message>
+  <wsdl:message name="ICommonService_test_OutputMessage">
+    <wsdl:part name="parameters" element="tns:testResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICommonService">
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetData" message="tns:ICommonService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetDataResponse" message="tns:ICommonService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetDataUsingDataContract" message="tns:ICommonService_GetDataUsingDataContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetDataUsingDataContractResponse" message="tns:ICommonService_GetDataUsingDataContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllSamples">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/getAllSamples" message="tns:ICommonService_getAllSamples_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/getAllSamplesResponse" message="tns:ICommonService_getAllSamples_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSample">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/AddSample" message="tns:ICommonService_AddSample_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/AddSampleResponse" message="tns:ICommonService_AddSample_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSysSampleById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/getSysSampleById" message="tns:ICommonService_getSysSampleById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/getSysSampleByIdResponse" message="tns:ICommonService_getSysSampleById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/Edit" message="tns:ICommonService_Edit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/EditResponse" message="tns:ICommonService_Edit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/Delete" message="tns:ICommonService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/DeleteResponse" message="tns:ICommonService_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetList" message="tns:ICommonService_GetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetListResponse" message="tns:ICommonService_GetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuByModuleIdAndUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetMenuByModuleIdAndUserId" message="tns:ICommonService_GetMenuByModuleIdAndUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetMenuByModuleIdAndUserIdResponse" message="tns:ICommonService_GetMenuByModuleIdAndUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetModuleList" message="tns:ICommonService_GetModuleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetModuleListResponse" message="tns:ICommonService_GetModuleList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleByParentId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetModuleByParentId" message="tns:ICommonService_GetModuleByParentId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetModuleByParentIdResponse" message="tns:ICommonService_GetModuleByParentId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateModule">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/CreateModule" message="tns:ICommonService_CreateModule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/CreateModuleResponse" message="tns:ICommonService_CreateModule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteModule">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/DeleteModule" message="tns:ICommonService_DeleteModule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/DeleteModuleResponse" message="tns:ICommonService_DeleteModule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditModule">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/EditModule" message="tns:ICommonService_EditModule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/EditModuleResponse" message="tns:ICommonService_EditModule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetModuleById" message="tns:ICommonService_GetModuleById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetModuleByIdResponse" message="tns:ICommonService_GetModuleById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsModuleExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/IsModuleExist" message="tns:ICommonService_IsModuleExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/IsModuleExistResponse" message="tns:ICommonService_IsModuleExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleOperateList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetModuleOperateList" message="tns:ICommonService_GetModuleOperateList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetModuleOperateListResponse" message="tns:ICommonService_GetModuleOperateList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateModuleOperate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/CreateModuleOperate" message="tns:ICommonService_CreateModuleOperate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/CreateModuleOperateResponse" message="tns:ICommonService_CreateModuleOperate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteModuleOperateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/DeleteModuleOperateById" message="tns:ICommonService_DeleteModuleOperateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/DeleteModuleOperateByIdResponse" message="tns:ICommonService_DeleteModuleOperateById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleOperateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetModuleOperateById" message="tns:ICommonService_GetModuleOperateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetModuleOperateByIdResponse" message="tns:ICommonService_GetModuleOperateById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsModuleOperateExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/IsModuleOperateExist" message="tns:ICommonService_IsModuleOperateExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/IsModuleOperateExistResponse" message="tns:ICommonService_IsModuleOperateExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPermission">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetPermission" message="tns:ICommonService_GetPermission_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetPermissionResponse" message="tns:ICommonService_GetPermission_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysRoleList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysRoleList" message="tns:ICommonService_GetSysRoleList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysRoleListResponse" message="tns:ICommonService_GetSysRoleList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSysRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/CreateSysRole" message="tns:ICommonService_CreateSysRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/CreateSysRoleResponse" message="tns:ICommonService_CreateSysRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/DeleteSysRole" message="tns:ICommonService_DeleteSysRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/DeleteSysRoleResponse" message="tns:ICommonService_DeleteSysRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditSysRole">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/EditSysRole" message="tns:ICommonService_EditSysRole_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/EditSysRoleResponse" message="tns:ICommonService_EditSysRole_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysRoleById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysRoleById" message="tns:ICommonService_GetSysRoleById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysRoleByIdResponse" message="tns:ICommonService_GetSysRoleById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSysRoleExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/IsSysRoleExist" message="tns:ICommonService_IsSysRoleExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/IsSysRoleExistResponse" message="tns:ICommonService_IsSysRoleExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysLogList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysLogList" message="tns:ICommonService_GetSysLogList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysLogListResponse" message="tns:ICommonService_GetSysLogList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysLogById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysLogById" message="tns:ICommonService_GetSysLogById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysLogByIdResponse" message="tns:ICommonService_GetSysLogById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSysLog">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/AddSysLog" message="tns:ICommonService_AddSysLog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/AddSysLogResponse" message="tns:ICommonService_AddSysLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysExceptionList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysExceptionList" message="tns:ICommonService_GetSysExceptionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysExceptionListResponse" message="tns:ICommonService_GetSysExceptionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysExceptionById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysExceptionById" message="tns:ICommonService_GetSysExceptionById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysExceptionByIdResponse" message="tns:ICommonService_GetSysExceptionById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRight">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/UpdateRight" message="tns:ICommonService_UpdateRight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/UpdateRightResponse" message="tns:ICommonService_UpdateRight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRightByRoleAndModule">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetRightByRoleAndModule" message="tns:ICommonService_GetRightByRoleAndModule_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetRightByRoleAndModuleResponse" message="tns:ICommonService_GetRightByRoleAndModule_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysUserList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysUserList" message="tns:ICommonService_GetSysUserList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysUserListResponse" message="tns:ICommonService_GetSysUserList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSysUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/CreateSysUser" message="tns:ICommonService_CreateSysUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/CreateSysUserResponse" message="tns:ICommonService_CreateSysUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/DeleteSysUser" message="tns:ICommonService_DeleteSysUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/DeleteSysUserResponse" message="tns:ICommonService_DeleteSysUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditSysUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/EditSysUser" message="tns:ICommonService_EditSysUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/EditSysUserResponse" message="tns:ICommonService_EditSysUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSysUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetSysUserById" message="tns:ICommonService_GetSysUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetSysUserByIdResponse" message="tns:ICommonService_GetSysUserById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSysUserExist">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/IsSysUserExist" message="tns:ICommonService_IsSysUserExist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/IsSysUserExistResponse" message="tns:ICommonService_IsSysUserExist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoleByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetRoleByUserId" message="tns:ICommonService_GetRoleByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetRoleByUserIdResponse" message="tns:ICommonService_GetRoleByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysRoleSysUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/UpdateSysRoleSysUser" message="tns:ICommonService_UpdateSysRoleSysUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/UpdateSysRoleSysUserResponse" message="tns:ICommonService_UpdateSysRoleSysUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRefSysUserByRoleId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetRefSysUserByRoleId" message="tns:ICommonService_GetRefSysUserByRoleId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetRefSysUserByRoleIdResponse" message="tns:ICommonService_GetRefSysUserByRoleId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByRoleId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetUserByRoleId" message="tns:ICommonService_GetUserByRoleId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetUserByRoleIdResponse" message="tns:ICommonService_GetUserByRoleId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysRoleSysUserByRoleId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/UpdateSysRoleSysUserByRoleId" message="tns:ICommonService_UpdateSysRoleSysUserByRoleId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/UpdateSysRoleSysUserByRoleIdResponse" message="tns:ICommonService_UpdateSysRoleSysUserByRoleId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/Login" message="tns:ICommonService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/LoginResponse" message="tns:ICommonService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="get_wx_service_points_ByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/get_wx_service_points_ByName" message="tns:ICommonService_get_wx_service_points_ByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/get_wx_service_points_ByNameResponse" message="tns:ICommonService_get_wx_service_points_ByName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductCartList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductCartList" message="tns:ICommonService_GetWXProductCartList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductCartListResponse" message="tns:ICommonService_GetWXProductCartList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderInfo" message="tns:ICommonService_GetWXProductOrderInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderInfoResponse" message="tns:ICommonService_GetWXProductOrderInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderInfoByAddressId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderInfoByAddressId" message="tns:ICommonService_GetWXProductOrderInfoByAddressId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderInfoByAddressIdResponse" message="tns:ICommonService_GetWXProductOrderInfoByAddressId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderTableInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderTableInfo" message="tns:ICommonService_GetWXProductOrderTableInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductOrderTableInfoResponse" message="tns:ICommonService_GetWXProductOrderTableInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerInfo" message="tns:ICommonService_GetWXCustomerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerInfoResponse" message="tns:ICommonService_GetWXCustomerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXSingleCustomerInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXSingleCustomerInfo" message="tns:ICommonService_GetWXSingleCustomerInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXSingleCustomerInfoResponse" message="tns:ICommonService_GetWXSingleCustomerInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerRateOfPurchaseInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerRateOfPurchaseInfo" message="tns:ICommonService_GetWXCustomerRateOfPurchaseInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerRateOfPurchaseInfoResponse" message="tns:ICommonService_GetWXCustomerRateOfPurchaseInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerInfoByBuyTimes">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerInfoByBuyTimes" message="tns:ICommonService_GetWXCustomerInfoByBuyTimes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXCustomerInfoByBuyTimesResponse" message="tns:ICommonService_GetWXCustomerInfoByBuyTimes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductSaleInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductSaleInfo" message="tns:ICommonService_GetWXProductSaleInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductSaleInfoResponse" message="tns:ICommonService_GetWXProductSaleInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductCategoryInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXProductCategoryInfo" message="tns:ICommonService_GetWXProductCategoryInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXProductCategoryInfoResponse" message="tns:ICommonService_GetWXProductCategoryInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXPagingProductSaleInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXPagingProductSaleInfo" message="tns:ICommonService_GetWXPagingProductSaleInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXPagingProductSaleInfoResponse" message="tns:ICommonService_GetWXPagingProductSaleInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXSingleProductSaleInfoByNameAndDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXSingleProductSaleInfoByNameAndDate" message="tns:ICommonService_GetWXSingleProductSaleInfoByNameAndDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXSingleProductSaleInfoByNameAndDateResponse" message="tns:ICommonService_GetWXSingleProductSaleInfoByNameAndDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXRegionProductInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXRegionProductInfo" message="tns:ICommonService_GetWXRegionProductInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXRegionProductInfoResponse" message="tns:ICommonService_GetWXRegionProductInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWXMonthlyProductOrderInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/GetWXMonthlyProductOrderInfo" message="tns:ICommonService_GetWXMonthlyProductOrderInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/GetWXMonthlyProductOrderInfoResponse" message="tns:ICommonService_GetWXMonthlyProductOrderInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICommonService/test" message="tns:ICommonService_test_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICommonService/testResponse" message="tns:ICommonService_test_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICommonService" type="tns:ICommonService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataUsingDataContract">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetDataUsingDataContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllSamples">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/getAllSamples" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSample">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/AddSample" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSysSampleById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/getSysSampleById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/Edit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMenuByModuleIdAndUserId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetMenuByModuleIdAndUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetModuleList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleByParentId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetModuleByParentId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateModule">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/CreateModule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteModule">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/DeleteModule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditModule">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/EditModule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetModuleById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsModuleExist">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/IsModuleExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleOperateList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetModuleOperateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateModuleOperate">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/CreateModuleOperate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteModuleOperateById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/DeleteModuleOperateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModuleOperateById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetModuleOperateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsModuleOperateExist">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/IsModuleOperateExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPermission">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysRoleList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysRoleList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSysRole">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/CreateSysRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysRole">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/DeleteSysRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditSysRole">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/EditSysRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysRoleById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysRoleById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSysRoleExist">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/IsSysRoleExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysLogList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysLogList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysLogById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysLogById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSysLog">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/AddSysLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysExceptionList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysExceptionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysExceptionById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysExceptionById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRight">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/UpdateRight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRightByRoleAndModule">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetRightByRoleAndModule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysUserList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSysUser">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/CreateSysUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSysUser">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/DeleteSysUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditSysUser">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/EditSysUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSysUserById">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetSysUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSysUserExist">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/IsSysUserExist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoleByUserId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetRoleByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysRoleSysUser">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/UpdateSysRoleSysUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRefSysUserByRoleId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetRefSysUserByRoleId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByRoleId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetUserByRoleId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSysRoleSysUserByRoleId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/UpdateSysRoleSysUserByRoleId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get_wx_service_points_ByName">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/get_wx_service_points_ByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductCartList">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductCartList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderInfoByAddressId">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductOrderInfoByAddressId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductOrderTableInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductOrderTableInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXCustomerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXSingleCustomerInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXSingleCustomerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerRateOfPurchaseInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXCustomerRateOfPurchaseInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXCustomerInfoByBuyTimes">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXCustomerInfoByBuyTimes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductSaleInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductSaleInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXProductCategoryInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXProductCategoryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXPagingProductSaleInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXPagingProductSaleInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXSingleProductSaleInfoByNameAndDate">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXSingleProductSaleInfoByNameAndDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXRegionProductInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXRegionProductInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWXMonthlyProductOrderInfo">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/GetWXMonthlyProductOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="test">
+      <soap:operation soapAction="http://tempuri.org/ICommonService/test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommonService">
+    <wsdl:port name="BasicHttpBinding_ICommonService" binding="tns:BasicHttpBinding_ICommonService">
+      <soap:address location="http://localhost:7632/CommonService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

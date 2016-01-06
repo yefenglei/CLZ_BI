@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model.common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model.common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GridPager">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="order" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="page" type="xs:int" />
+      <xs:element minOccurs="0" name="rows" type="xs:int" />
+      <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalRows" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridPager" nillable="true" type="tns:GridPager" />
+</xs:schema>

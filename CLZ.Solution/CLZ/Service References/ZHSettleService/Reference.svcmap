@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a039150d-d99e-4461-9af0-65e352dd2cdd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7632/ZHSettleService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ZHSettleService.xsd" MetadataType="Schema" ID="909a0b29-aa97-48f1-aa25-6b736f7c853e" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ZHSettleService1.xsd" MetadataType="Schema" ID="1ed3b2d9-cd2c-46fd-ac3d-ca3711499be3" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ZHSettleService2.xsd" MetadataType="Schema" ID="96b02c67-85d5-4b4c-a72d-cd5bdff18ea6" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ZHSettleService3.xsd" MetadataType="Schema" ID="8d00246e-f530-4f2c-a410-2efd217fd0cf" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ZHSettleService.wsdl" MetadataType="Wsdl" ID="4aff176a-8593-476d-ac99-91522994d4a9" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?wsdl" />
+    <MetadataFile FileName="ZHSettleService5.xsd" MetadataType="Schema" ID="146901ba-be95-4d8e-bb32-c4dca269d465" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd5" />
+    <MetadataFile FileName="ZHSettleService4.xsd" MetadataType="Schema" ID="eed1cfac-181a-48f4-8a93-2da80a304fd7" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ZHSettleService.disco" MetadataType="Disco" ID="d8cb47cd-2430-4663-b468-7083fb0d9c26" SourceId="1" SourceUrl="http://localhost:7632/ZHSettleService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

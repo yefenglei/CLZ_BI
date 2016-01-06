@@ -1,0 +1,3 @@
+D:\workspace\CLZ_MIS\CLZ.Solution\CodeTemplateHelper\obj\Debug\CodeTemplateHelper.csprojResolveAssemblyReference.cache
+D:\workspace\CLZ_MIS\CLZ.Solution\CodeTemplateHelper\obj\Debug\CodeTemplateHelper.Properties.Resources.resources
+D:\workspace\CLZ_MIS\CLZ.Solution\CodeTemplateHelper\obj\Debug\CodeTemplateHelper.csproj.GenerateResource.Cache

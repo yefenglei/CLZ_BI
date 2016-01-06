@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model" />
+  <xs:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CLZ.Common" />
+  <xs:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.common" />
+  <xs:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.ZHService" />
+  <xs:element name="getAllZH_SETTLE_DEAL_MAIN">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllZH_SETTLE_DEAL_MAINResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getAllZH_SETTLE_DEAL_MAINResult" nillable="true" type="q1:ArrayOfZH_SETTLE_DEAL_MAIN" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_SETTLE_DEAL_MAIN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q2:ZH_SETTLE_DEAL_MAIN" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q3:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_SETTLE_DEAL_MAINResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddZH_SETTLE_DEAL_MAINResult" type="xs:int" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q4:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_SETTLE_DEAL_MAINById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_SETTLE_DEAL_MAINByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getZH_SETTLE_DEAL_MAINByIdResult" nillable="true" type="q5:ZH_SETTLE_DEAL_MAIN" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_SETTLE_DEAL_MAIN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q6:ZH_SETTLE_DEAL_MAIN" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q7:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_SETTLE_DEAL_MAINResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditZH_SETTLE_DEAL_MAINResult" type="xs:int" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q8:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_SETTLE_DEAL_MAIN">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID" type="xs:long" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q9:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_SETTLE_DEAL_MAINResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteZH_SETTLE_DEAL_MAINResult" type="xs:int" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q10:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_SETTLE_DEAL_MAINList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q11:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_SETTLE_DEAL_MAINListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_SETTLE_DEAL_MAINListResult" nillable="true" type="q12:ArrayOfZH_SETTLE_DEAL_MAIN" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q13:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainSettleDealInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMainSettleDealInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetMainSettleDealInfoResult" nillable="true" type="q14:ArrayOfZH_SETTLE_DEAL_MAIN" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllZH_DAILY_GOODS_DEAL">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllZH_DAILY_GOODS_DEALResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getAllZH_DAILY_GOODS_DEALResult" nillable="true" type="q15:ArrayOfZH_DAILY_GOODS_DEAL" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_DAILY_GOODS_DEAL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q16:ZH_DAILY_GOODS_DEAL" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q17:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_DAILY_GOODS_DEALResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddZH_DAILY_GOODS_DEALResult" type="xs:int" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q18:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_DAILY_GOODS_DEALById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_DAILY_GOODS_DEALByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getZH_DAILY_GOODS_DEALByIdResult" nillable="true" type="q19:ZH_DAILY_GOODS_DEAL" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_DAILY_GOODS_DEAL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q20:ZH_DAILY_GOODS_DEAL" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q21:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_DAILY_GOODS_DEALResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditZH_DAILY_GOODS_DEALResult" type="xs:int" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q22:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_DAILY_GOODS_DEAL">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q23:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_DAILY_GOODS_DEALResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteZH_DAILY_GOODS_DEALResult" type="xs:int" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q24:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q25:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_DAILY_GOODS_DEALListResult" nillable="true" type="q26:ArrayOfZH_DAILY_GOODS_DEAL" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q27:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="limitRowNumber" type="xs:int" />
+        <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="order" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="tradeMode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_DAILY_GOODS_DEALInfoResult" nillable="true" type="q28:ArrayOfsp_zhsettle_getGoodsDealInfo_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALPagingInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q29:GridPager" />
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="tradeMode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DAILY_GOODS_DEALPagingInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_DAILY_GOODS_DEALPagingInfoResult" nillable="true" type="q30:ArrayOfsp_zhsettle_getGoodsDealInfo_Result" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q31:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_GOODS_DEAL_CategoryInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="tradeMode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_GOODS_DEAL_CategoryInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_GOODS_DEAL_CategoryInfoResult" nillable="true" type="q32:ArrayOfsp_zhsettle_getGoodsDealCategoryInfo_Result" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_Single_GOODS_DEALInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="tradeMode" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_Single_GOODS_DEALInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_Single_GOODS_DEALInfoResult" nillable="true" type="q33:ArrayOfZH_DAILY_GOODS_DEAL" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllZH_DIC_PRODUCT">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllZH_DIC_PRODUCTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getAllZH_DIC_PRODUCTResult" nillable="true" type="q34:ArrayOfZH_DIC_PRODUCT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_DIC_PRODUCT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q35:ZH_DIC_PRODUCT" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q36:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddZH_DIC_PRODUCTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddZH_DIC_PRODUCTResult" type="xs:int" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q37:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_DIC_PRODUCTById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PRODUCT_SN" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getZH_DIC_PRODUCTByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="getZH_DIC_PRODUCTByIdResult" nillable="true" type="q38:ZH_DIC_PRODUCT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_DIC_PRODUCT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="model" nillable="true" type="q39:ZH_DIC_PRODUCT" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q40:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditZH_DIC_PRODUCTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EditZH_DIC_PRODUCTResult" type="xs:int" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q41:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_DIC_PRODUCT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PRODUCT_SN" nillable="true" type="xs:string" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q42:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteZH_DIC_PRODUCTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteZH_DIC_PRODUCTResult" type="xs:int" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/CLZ.Common" minOccurs="0" name="error" nillable="true" type="q43:ValidationError" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DIC_PRODUCTList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q44:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DIC_PRODUCTListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_DIC_PRODUCTListResult" nillable="true" type="q45:ArrayOfZH_DIC_PRODUCT" />
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q46:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DIC_PRODUCTPagingInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q47:GridPager" />
+        <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetZH_DIC_PRODUCTPagingInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/CLZ.Model" minOccurs="0" name="GetZH_DIC_PRODUCTPagingInfoResult" nillable="true" type="q48:ArrayOfZH_DIC_PRODUCT" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q49:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPRODUCTOrderByCountPagingInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q50:GridPager" />
+        <xs:element minOccurs="0" name="searchText" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPRODUCTOrderByCountPagingInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/CLZ.Model.ZHService" minOccurs="0" name="GetPRODUCTOrderByCountPagingInfoResult" nillable="true" type="q51:ArrayOfZHProductModel" />
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/CLZ.Model.common" minOccurs="0" name="pager" nillable="true" type="q52:GridPager" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

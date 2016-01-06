@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DBDAFCB2-07FB-4EB1-99C5-ADD26D6A86B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLZ.Model</RootNamespace>
+    <AssemblyName>CLZ.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CLZ\CustomerOrder.cs" />
+    <Compile Include="CLZ\ProductOrder.cs" />
+    <Compile Include="CLZ\PurchaseRate.cs" />
+    <Compile Include="common\GridPager.cs" />
+    <Compile Include="DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="easyuicolumn.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="easyuigrid.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="easyui_query_parameters.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="highchart.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="highchart_column.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_Sys_GetRightByRoleAndModule_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetRightOperate_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetRoleByUserId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="P_Sys_GetUserByRoleId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getCustomerInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getMonthlyProductInfoByAddressId_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getOrderInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getProductCategoryInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getProductInfoByNameAndDate_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getProductInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getRegionProductInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_wx_getSingleProductSaleInfoByNameAndDate_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_zhsettle_getGoodsDealCategoryInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_zhsettle_getGoodsDealInfo_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysException.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysLog.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysModule.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysModuleOperate.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRight.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRightOperate.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysRole.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysSample.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SysUser.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sys\AccountModel.cs" />
+    <Compile Include="Sys\permModel.cs" />
+    <Compile Include="Sys\SysModuleNavModel.cs" />
+    <Compile Include="Sys\SysRightModelByRoleAndModuleModel.cs" />
+    <Compile Include="univgrid.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnivGrid\SqlHelper.cs" />
+    <Compile Include="univgrid_parameter.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="univgrid_parameter_setup.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_customer_order.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_product.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_product_cart.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_product_cat.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_product_salegoods.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wx_service_points.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZHService\ZHProductModel.cs" />
+    <Compile Include="ZH_DAILY_GOODS_DEAL.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZH_DIC_PRODUCT.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZH_GOODS_TYPE.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ZH_SETTLE_DEAL_MAIN.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </None>
+    <None Include="DB.edmx.diagram">
+      <DependentUpon>DB.edmx</DependentUpon>
+    </None>
+    <None Include="DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DB.cs</LastGenOutput>
+      <DependentUpon>DB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

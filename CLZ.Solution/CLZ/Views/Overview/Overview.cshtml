@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Overview";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    @if (ViewBag.isShowDateSelector == "true")
+    {
+    @:<div id="searchTimeSpan" style="float:left;">
+        @:<span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+        @:<span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+        @:<span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+    @:</div>
+    @:<div class="search">开始日期：<input id="startDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp; 结束日期：<input id="endDate" type="text" class="easyui-datebox"><span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span></div>
+    }
+    
+</div>
+@if (ViewBag.isShowHighChart == "true")
+{
+@:<div id="container" style="width:@Html.Raw(ViewBag.highchartWidth);height:@Html.Raw(ViewBag.highchartHeight);float:left;"></div>
+}
+<table id="List"></table>
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+
+    var payTypes = "alipay,wcpay";
+    var Name="王尼玛";
+
+    // 将UTC日期转为常见的日期字符串
+    function funConvertUTCToNormalDateTime(utc) {
+        var date = new Date(utc-3600);
+        var ndt;
+        //ndt = date.getUTCDate() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCFullYear() + " " + date.getUTCHours() + ":" + date.getUTCMinutes() + ":" + date.getUTCSeconds();
+        ndt = date.getUTCFullYear() + "年" + (date.getUTCMonth() + 1) + "月" + (date.getUTCDate() +"日");
+        return ndt;
+    }
+
+    $(function () {
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null || endDate == "") {
+            endDate = now.toLocaleDateString();
+        }
+        //GetChartOrderInfo();
+        @if (ViewBag.isShowDateSelector == "true") {
+        @:$("#btnQuery").click();
+                }
+        else {
+        @:TableInfo();
+        @:ChartInfo();
+        }
+    });
+
+    $("#btnQuery").click(function () {
+        startDate = $('#startDate').datebox('getValue');
+        endDate = $("#endDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null) {
+            endDate = now.toLocaleDateString();
+        }
+
+        TableInfo();
+        ChartInfo();
+    });
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        switch (id) {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                break;
+        }
+        TableInfo();
+        ChartInfo();
+    });
+
+
+    function ChartInfo() {
+        @if (ViewBag.isShowHighChart=="false")
+        {
+            @:return;
+        }else{
+            @:$.post('@Url.Action("GetHighChartInfo")', @Html.Raw(ViewBag.highchartQueryParams),
+            @:function (data) {
+                @:@Html.Raw(ViewBag.highchartArrayListDefinition)              
+                @:@Html.Raw(ViewBag.highchartArrayList)
+                @:$('#container').highcharts({
+                    @:chart: @Html.Raw(ViewBag.highchartChart),
+                    @:title: @Html.Raw(ViewBag.highchartTitle),
+                    @:tooltip: @Html.Raw(ViewBag.highchartTooltip),
+                    if (!string.IsNullOrEmpty(ViewBag.highchartPlotOptions))
+                    {
+                    @:plotOptions: @Html.Raw(ViewBag.highchartPlotOptions),
+                    }
+                    @:xAxis: @Html.Raw(ViewBag.highchartXAxis),
+                    @:yAxis: @Html.Raw(ViewBag.highchartYAxis),
+                    @:series: @Html.Raw(ViewBag.highchartSeries) ,
+                    @:credits: {
+                        @:enabled: false
+                    @:}
+                @:});
+            @:}, "json");
+        }
+
+    }
+
+
+    function TableInfo() {
+        $('#List').datagrid({
+            url: '@Url.Action(ViewBag.easyuiUrl)',
+            @if (string.IsNullOrEmpty(ViewBag.easyuiWidth))
+            {
+            @:width: $(window).width() - 10,
+                                                }
+            else {
+            @:width: @Html.Raw(ViewBag.easyuiWidth),
+                                                }
+            methord: '@ViewBag.easyuiMethord',
+            queryParams: @ViewBag.easyuiQueryParams,
+            @if (string.IsNullOrEmpty(ViewBag.easyuiHeight))
+            {
+            @:height: $(window).height() - 35,
+                                                }
+            else {
+            @:height: @Html.Raw(ViewBag.easyuiHeight),
+                                                }
+            fitColumns: @Html.Raw(ViewBag.easyuiFitColumns),
+            sortName: '@Html.Raw(ViewBag.easyuiSortName)',
+            sortOrder: '@Html.Raw(ViewBag.easyuiSortOrder)',
+            remoteSort: @Html.Raw(ViewBag.easyuiRemoteSort),
+            @if (ViewBag.easyuiPagination=="true")
+            {
+            @:idField: '@Html.Raw(ViewBag.easyuiIdField)',
+            @:pageSize: @Html.Raw(ViewBag.easyuiPageSize),
+            @:pageList: @Html.Raw(ViewBag.easyuiPageList),
+            @:pagination:  @Html.Raw(ViewBag.easyuiPagination),
+            }
+            else { }
+            showFooter: @Html.Raw(ViewBag.easyuiShowFooter),
+            striped: @Html.Raw(ViewBag.easyuiStriped), //奇偶行是否区分
+            singleSelect: @Html.Raw(ViewBag.easyuiSingleSelect),//单选模式
+            rownumbers: @Html.Raw(ViewBag.easyuiRownumbers),//行号
+            columns: @Html.Raw(ViewBag.easyuiColumns)
+            });
+    }
+
+
+</script>

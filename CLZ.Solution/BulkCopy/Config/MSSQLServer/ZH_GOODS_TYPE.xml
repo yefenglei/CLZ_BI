@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[ZH_GOODS_TYPE]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from ZH_GOODS_TYPE;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[select dp.PRODUCT_SN,dp.PRODUCT_NAME,dpt.PRODUCT_TYPE_NAME from dbo.DIC_PRODUCT dp inner join dbo.DIC_PRODUCT_TYPE dpt on dp.PRODUCT_TYPE_ID=dpt.PRODUCT_TYPE_ID;]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

@@ -1,0 +1,335 @@
+﻿@{
+    ViewBag.Title = "客户信息";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+        <span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+        <span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+        <span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+        <span><a id="top10" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">前10</span></span></a></span>
+        <span><a id="top30" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">前30</span></span></a></span>
+    </div>
+    <div class="search" style="width:50%">
+        开始日期：<input id="txtStartDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        结束日期：<input id="txtEndDate" type="text" class="easyui-datebox">&nbsp;  &nbsp;  &nbsp;  &nbsp;
+        客户姓名：<input id="txtCustomerName" type="text">&nbsp;  &nbsp;
+        <span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span>
+    </div>
+</div>
+<div id="container" style="min-width:800px;height:400px"></div>
+<table id="List"></table>
+
+<script type="text/javascript">
+    var startDate='@ViewBag.startDate';
+    var endDate='@ViewBag.endDate';
+    var customerName='@ViewBag.customerName';
+    var compareDay=30;
+    var pageSize = 1000;
+
+    $(function () {
+        if(startDate==""){
+            $("#txtStartDate").datebox("setValue", GetDate(30));
+        }else{
+            $("#txtStartDate").datebox("setValue", startDate);
+        }
+        if(endDate!=""){
+            $("#txtStartDate").datebox("setValue", endDate);
+        }
+        if(customerName!=""){
+            $("#txtCustomerName").val(customerName);
+        }
+        $("#btnQuery").click();
+    });
+
+
+
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        customerName = $("#txtCustomerName").val();
+        var now = new Date();
+        if (customerName.trim()!="") {
+            GetSingleCustomerInfo();
+        }
+    });
+
+
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        customerName = "";
+        switch (id) {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                break;
+            case 'top10':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 10;
+                break;
+            case 'top30':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 30;
+                break;
+        }
+        GetCustomerInfo();
+
+    });
+
+
+    function GetSingleCustomerInfo() {
+        //表格
+        $('#List').datagrid({
+            url: '@Url.Action("GettWXSingleCustomerInfo")' + '?customerName=' + customerName+'&startDate=' + startDate + '&endDate=' + endDate,
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'time',
+            sortOrder: 'desc',
+            remoteSort: false,
+            idField: 'time',
+            //pageSize: 20,
+            //pageList: [10, 20, 30, 40, 50],
+            //pagination: true,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'time', title: '时间', width: 120, sortable: true, align: 'right' },
+                { field: 'totalOrder', title: '下单总数', width: 120, sortable: true, align: 'right' },
+                { field: 'totalCount', title: '购买商品数', width: 120, sortable: true, align: 'right' },
+                { field: 'totalPrice', title: '消费总额', width: 120, sortable: true, align: 'right' }
+            ]]
+        });
+        //图表
+        var url = '@Url.Action("GettWXSingleCustomerInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate,
+                'customerName': customerName
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                //准备数据
+                var prodCategoryArray = [];
+                var orderArray = [];
+                var countArray = [];
+                var priceArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    prodCategoryArray.push(data.rows[i].time);
+                    orderArray.push(data.rows[i].totalOrder);
+                    countArray.push(data.rows[i].totalCount);
+                    priceArray.push(data.rows[i].totalPrice);
+                }
+
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'line'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '顾客消费信息'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: prodCategoryArray  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '消费额/元'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }, {
+                        title: {
+                            text: '下单量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }, {
+                        title: {
+                            text: '购买数量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    series: [{                                 //指定数据列
+                        name: '下单量',                          //数据列名
+                        yAxis: 1,
+                        data: orderArray                   //数据
+                    }, {
+                        name: '购买商品数量',
+                        yAxis: 2,
+                        data: countArray
+                    },
+                    {
+                        name: '消费总额',
+                        yAxis: 0,
+                        data: priceArray
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+
+
+    function GetCustomerInfo() {
+        $('#List').datagrid({
+            url: '@Url.Action("GettWXCustomerTableInfo")' + '?startDate=' + startDate + '&endDate=' + endDate + '&compareDay=' + compareDay + '&pageSize='+pageSize,
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'time',
+            sortOrder: 'desc',
+            remoteSort: false,
+            //idField: 'truename',
+            //pageSize: 20,
+            //pageList: [10, 20, 30, 40, 50],
+            //pagination: true,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'truename', title: '姓名', width: 120, sortable: true, align: 'right' },
+                { field: 'totalOrder', title: '下单总数', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'totalOrderCR', title: '同比上月', width: 120, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                },
+                { field: 'totalCount', title: '购买商品数', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'totalCountCR', title: '同比上月', width: 120, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                },
+                { field: 'totalPrice', title: '消费总额', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'totalPriceCR', title: '同比上月', width: 120, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                }
+            ]]
+        });
+
+
+        //获取客户信息
+        var url = '@Url.Action("GettWXCustomerInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate,
+                'compareDay': compareDay,
+                'pageSize': pageSize,
+                'customerName': customerName
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'column'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '消费能力'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: data.categories  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '消费额/元'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }, {
+                        title: {
+                            text: '下单量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }, {
+                        title: {
+                            text: '购买数量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    series: [{                                 //指定数据列
+                        name: '下单量',                          //数据列名
+                        yAxis: 1,
+                        data: data.series.orderList                   //数据
+                    }, {
+                        name: '购买商品数量',
+                        yAxis: 2,
+                        data: data.series.countList
+                    },
+                    {
+                        name: '消费总额',
+                        yAxis: 0,
+                        data: data.series.priceList
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+</script>
+

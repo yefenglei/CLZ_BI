@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[HISTORY_SETTLE_DEAL_MAIN_Copy]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from HISTORY_SETTLE_DEAL_MAIN_Copy;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[  SELECT [MAIN_ID],CONVERT(varchar, [DEAL_TIME], 111 ) as DEAL_TIME,[DEAL_COUNT],[IS_VALID],[GOODS_CASH],[MANAGE_FEE] FROM [HISTORY_SETTLE_DEAL_MAIN] where DEAL_TIME>=@startDate  and DEAL_TIME<@endDate;]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

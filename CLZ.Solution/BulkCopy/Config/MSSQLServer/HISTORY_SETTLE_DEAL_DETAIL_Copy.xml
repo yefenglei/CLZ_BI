@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[HISTORY_SETTLE_DEAL_DETAIL_Copy]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from HISTORY_SETTLE_DEAL_DETAIL_Copy;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[  SELECT [DTS_ID],[MAIN_ID],cast(cast(PRODUCT_SN as int) as varchar(7)) as [PRODUCT_SN],[PRODUCT_NAME],[WEIGHT_GROSS],[WEIGHT_TARE],[WEIGHT],[COUNT],[TRADE_MODE],[UNITPRICE],[AMOUNT],[RATE],[FEE], CAST(FLOOR(AMOUNT/WEIGHT_GROSS) as varchar)+'_'+CAST((FLOOR(AMOUNT/WEIGHT_GROSS)+1) as varchar) as f_price_region FROM [HISTORY_SETTLE_DEAL_DETAIL] where WEIGHT_GROSS>0 and MAIN_ID in ( SELECT [MAIN_ID] FROM [HISTORY_SETTLE_DEAL_MAIN] where DEAL_TIME>=@startDate and DEAL_TIME<@endDate);]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

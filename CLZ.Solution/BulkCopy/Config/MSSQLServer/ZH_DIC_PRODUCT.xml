@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[ZH_DIC_PRODUCT]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from ZH_DIC_PRODUCT;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[SELECT [PRODUCT_SN],[PRODUCT_ID],[PRODUCT_NAME],[LEVEL_ID],[LEVEL_NAME],[ALIAS],[ENGLISH_NAME],[REMARK],[IS_VALID],[SHORT],[SPRODUCT_ID],[SPRODUCT_NAME],[IS_SELECTED],[PRODUCT_INMARKET_NAME],[PRODUCT_ORDERNO],[PRODUCT_ISVIEW],[PRODUCT_TYPE_ID],[is_promotion],[CHARGE_RATE]  FROM [dbo].[DIC_PRODUCT];]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

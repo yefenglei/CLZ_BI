@@ -1,0 +1,61 @@
+﻿@using CLZ.Core;
+@{
+    ViewBag.Title = "SelectProduct";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+}
+
+<div class="mvctool bgb">
+    @Html.ToolButton("btnSave", "icon-add", "添加", true)<input id="txtProductName" type="text">&nbsp;<span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span>
+</div>
+<div class="pd3">
+    <table id="ProductList"></table>
+</div>
+<input id="selectedItems" type="hidden" value="" />
+
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        var products = new Array();
+        selectedRows = $("#ProductList").datagrid("getSelections");
+        for (var i = 0; i < selectedRows.length; i++) {
+            products.push(selectedRows[i].PRODUCT_NAME);
+        }
+        $("#selectedItems").val(products);
+        window.parent.frameReturnByClose();
+        
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#ProductList').datagrid({
+            url: '@Url.Action("GetProductInfo")',
+            width: $(window).width() - 5,
+            methord: 'post',
+            height: $(window).height() - 5,
+            fitColumns: true,
+            sortName: 'PRODUCT_TOTAL',
+            sortOrder: 'desc',
+            idField: 'PRODUCT_TOTAL',
+            pageSize: 10,
+            pageList: [10, 20, 30, 40, 50],
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            //singleSelect: true,//单选模式
+            checkOnSelect: true,
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'PRODUCT_SN', title: 'SN', width: 80 ,checkbox:true},
+                { field: 'PRODUCT_NAME', title: '产品名称', width: 120, sortable: true, }
+            ]]
+        });
+    });
+
+    $("#btnQuery").click(function () {
+        var prodName = $('#txtProductName').val();
+        $('#ProductList').datagrid({
+            url: '@Url.Action("GetProductInfo")' + '?searchText=' + prodName
+        });
+    });
+</script>
+
+

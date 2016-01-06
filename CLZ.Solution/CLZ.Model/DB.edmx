@@ -1,0 +1,2024 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="easyui_query_parameters">
+          <Key>
+            <PropertyRef Name="easyuigrid_id" />
+          </Key>
+          <Property Name="easyuigrid_id" Type="int" Nullable="false" />
+          <Property Name="key" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="100" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="easyuicolumn">
+          <Key>
+            <PropertyRef Name="easyuigrid_id" />
+            <PropertyRef Name="field" />
+          </Key>
+          <Property Name="easyuigrid_id" Type="int" Nullable="false" />
+          <Property Name="field" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="field_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="width" Type="int" Nullable="false" />
+          <Property Name="sortable" Type="bit" Nullable="false" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+          <Property Name="ordernum" Type="int" />
+        </EntityType>
+        <EntityType Name="easyuigrid">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="easyuigrid_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="int" Nullable="false" />
+          <Property Name="easyuigrid_id" Type="int" Nullable="false" />
+          <Property Name="width" Type="varchar" MaxLength="50" />
+          <Property Name="height" Type="varchar" MaxLength="50" />
+          <Property Name="methord" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="fitColumns" Type="bit" Nullable="false" />
+          <Property Name="sortName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sortOrder" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idField" Type="varchar" MaxLength="30" />
+          <Property Name="pageSize" Type="int" />
+          <Property Name="pageList" Type="varchar" MaxLength="30" />
+          <Property Name="pagination" Type="bit" />
+          <Property Name="remoteSort" Type="bit" Nullable="false" />
+          <Property Name="showFooter" Type="bit" Nullable="false" />
+          <Property Name="striped" Type="bit" Nullable="false" />
+          <Property Name="singleSelect" Type="bit" Nullable="false" />
+          <Property Name="rownumbers" Type="bit" Nullable="false" />
+          <Property Name="onClickCell" Type="varchar" MaxLength="500" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="highchart">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="chartid" />
+          </Key>
+          <Property Name="univgrid_id" Type="int" Nullable="false" />
+          <Property Name="chartid" Type="int" Nullable="false" />
+          <Property Name="width" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="height" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="chartmode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="chart" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="tooltip" Type="varchar" MaxLength="1000" />
+          <Property Name="xAxis" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="yAxis" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="plotOptions" Type="varchar" MaxLength="200" />
+          <Property Name="series" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="highchart_column">
+          <Key>
+            <PropertyRef Name="chartid" />
+            <PropertyRef Name="field" />
+          </Key>
+          <Property Name="chartid" Type="int" Nullable="false" />
+          <Property Name="field" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="field_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="field_display" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HelpLink" Type="varchar" MaxLength="500" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="Source" Type="varchar" MaxLength="500" />
+          <Property Name="StackTrace" Type="text" />
+          <Property Name="TargetSite" Type="varchar" MaxLength="500" />
+          <Property Name="Data" Type="varchar" MaxLength="500" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Operator" Type="varchar" MaxLength="50" />
+          <Property Name="Message" Type="varchar" MaxLength="500" />
+          <Property Name="Result" Type="varchar" MaxLength="20" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="Module" Type="varchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EnglishName" Type="varchar" MaxLength="200" />
+          <Property Name="ParentId" Type="varchar" MaxLength="50" />
+          <Property Name="Url" Type="varchar" MaxLength="200" />
+          <Property Name="Iconic" Type="varchar" MaxLength="200" />
+          <Property Name="Sort" Type="int" />
+          <Property Name="Remark" Type="varchar" MaxLength="4000" />
+          <Property Name="Enable" Type="bit" />
+          <Property Name="CreatePerson" Type="varchar" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="IsLast" Type="bit" Nullable="false" />
+          <Property Name="Version" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SysModuleOperate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="KeyCode" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysRight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ModuleId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rightflag" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysRightOperate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="RightId" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="KeyCode" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatePerson" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysRoleSysUser">
+          <Key>
+            <PropertyRef Name="SysUserId" />
+            <PropertyRef Name="SysRoleId" />
+          </Key>
+          <Property Name="SysUserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SysRoleId" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysSample">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Bir" Type="datetime" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+          <Property Name="Note" Type="text" />
+          <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TrueName" Type="varchar" MaxLength="200" />
+          <Property Name="Card" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="varchar" MaxLength="200" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="200" />
+          <Property Name="QQ" Type="varchar" MaxLength="50" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="200" />
+          <Property Name="OtherContact" Type="varchar" MaxLength="200" />
+          <Property Name="Province" Type="varchar" MaxLength="200" />
+          <Property Name="City" Type="varchar" MaxLength="200" />
+          <Property Name="Village" Type="varchar" MaxLength="200" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="bit" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CreatePerson" Type="varchar" MaxLength="200" />
+          <Property Name="Sex" Type="varchar" MaxLength="10" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="JoinDate" Type="datetime" />
+          <Property Name="Marital" Type="varchar" MaxLength="10" />
+          <Property Name="Political" Type="varchar" MaxLength="50" />
+          <Property Name="Nationality" Type="varchar" MaxLength="20" />
+          <Property Name="Native" Type="varchar" MaxLength="20" />
+          <Property Name="School" Type="varchar" MaxLength="50" />
+          <Property Name="Professional" Type="varchar" MaxLength="100" />
+          <Property Name="Degree" Type="varchar" MaxLength="20" />
+          <Property Name="DepId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PosId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Expertise" Type="varchar" MaxLength="3000" />
+          <Property Name="JobState" Type="varchar" MaxLength="20" />
+          <Property Name="Photo" Type="varchar" MaxLength="200" />
+          <Property Name="Attach" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="univgrid">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="int" Nullable="false" />
+          <Property Name="univgrid_type" Type="smallint" Nullable="false" />
+          <Property Name="module_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="univgrid_parameter">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="param_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="int" Nullable="false" />
+          <Property Name="param_id" Type="int" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="univgrid_parameter_setup">
+          <Key>
+            <PropertyRef Name="param_id" />
+          </Key>
+          <Property Name="param_id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="mod_user" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="mod_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wx_customer_order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="truename" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="wechat_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="totalOrder" Type="int" Nullable="false" />
+          <Property Name="time" Type="date" Nullable="false" />
+          <Property Name="totalCount" Type="int" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wx_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="catid" Type="smallint" Nullable="false" />
+          <Property Name="storeid" Type="smallint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="oprice" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="discount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="intro" Type="text" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="keyword" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="salecount" Type="smallint" Nullable="false" />
+          <Property Name="logourl" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="dining" Type="tinyint" Nullable="false" />
+          <Property Name="groupon" Type="tinyint" Nullable="false" />
+          <Property Name="endtime" Type="datetime" Nullable="false" />
+          <Property Name="fakemembercount" Type="smallint" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="sn" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="stock" Type="int" Nullable="false" />
+          <Property Name="state" Type="smallint" Nullable="false" />
+          <Property Name="is_sell_use_stock" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wx_product_cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="wecha_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="info" Type="text" Nullable="false" />
+          <Property Name="total" Type="smallint" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="paid" Type="tinyint" Nullable="false" />
+          <Property Name="pay_type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="truename" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="orderid" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="address_id" Type="int" />
+        </EntityType>
+        <EntityType Name="wx_product_cat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="token" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="des" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="parentid" Type="int" Nullable="false" />
+          <Property Name="logourl" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="dining" Type="tinyint" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="is_index_display" Type="smallint" Nullable="false" />
+          <Property Name="sort" Type="int" Nullable="false" />
+          <Property Name="keyword" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wx_product_salegoods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderid" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="sn" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="time" Type="datetime" Nullable="false" />
+          <Property Name="address_id" Type="int" />
+        </EntityType>
+        <EntityType Name="wx_service_points">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="service_name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ordernum" Type="int" />
+        </EntityType>
+        <EntityType Name="ZH_DAILY_GOODS_DEAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PRODUCT_SN" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AMOUNT" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="COUNT" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="FEE" Type="decimal" Precision="7" Scale="1" />
+          <Property Name="DEAL_DATE" Type="date" Nullable="false" />
+          <Property Name="TRADE_MODE" Type="int" Nullable="false" />
+          <Property Name="AVG_AMOUNT" Type="decimal" Precision="15" Scale="3" Nullable="false" />
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZH_DIC_PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_SN" />
+          </Key>
+          <Property Name="PRODUCT_SN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PRODUCT_ID" Type="char" MaxLength="7" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LEVEL_ID" Type="char" MaxLength="1" />
+          <Property Name="LEVEL_NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="ALIAS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ENGLISH_NAME" Type="varchar" MaxLength="20" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="200" />
+          <Property Name="IS_VALID" Type="bit" Nullable="false" />
+          <Property Name="SHORT" Type="varchar" MaxLength="20" />
+          <Property Name="SPRODUCT_ID" Type="char" MaxLength="4" />
+          <Property Name="SPRODUCT_NAME" Type="char" MaxLength="12" />
+          <Property Name="IS_SELECTED" Type="bit" Nullable="false" />
+          <Property Name="PRODUCT_INMARKET_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRODUCT_ORDERNO" Type="varchar" MaxLength="20" />
+          <Property Name="PRODUCT_ISVIEW" Type="bit" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_ID" Type="varchar" MaxLength="20" />
+          <Property Name="is_promotion" Type="bit" Nullable="false" />
+          <Property Name="CHARGE_RATE" Type="decimal" Precision="17" Scale="3" />
+        </EntityType>
+        <EntityType Name="ZH_GOODS_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCT_SN" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_NAME" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ZH_SETTLE_DEAL_MAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GOODS_CASH" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="MANAGE_FEE" Type="decimal" Precision="10" Scale="1" Nullable="false" />
+          <Property Name="DEAL_COUNT" Type="int" Nullable="false" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEAL_TIME" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_SysModule_SysModule">
+          <End Role="SysModule" Type="Self.SysModule" Multiplicity="0..1" />
+          <End Role="SysModule1" Type="Self.SysModule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysModule1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysModuleOperate_SysModule">
+          <End Role="SysModule" Type="Self.SysModule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysModuleOperate" Type="Self.SysModuleOperate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysModuleOperate">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRight_SysModule">
+          <End Role="SysModule" Type="Self.SysModule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysRight" Type="Self.SysRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRight">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRight_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysRight" Type="Self.SysRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRight">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRightOperate_SysRight">
+          <End Role="SysRight" Type="Self.SysRight" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysRightOperate" Type="Self.SysRightOperate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRightOperate">
+              <PropertyRef Name="RightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleSysUser_SysRole">
+          <End Role="SysRole" Type="Self.SysRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysRoleSysUser" Type="Self.SysRoleSysUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRoleSysUser">
+              <PropertyRef Name="SysRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRoleSysUser_SysUser">
+          <End Role="SysUser" Type="Self.SysUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SysRoleSysUser" Type="Self.SysRoleSysUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRoleSysUser">
+              <PropertyRef Name="SysUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="P_Sys_ClearUnusedRightOperate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_Sys_DeleteRightByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="roleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_DeleteSysRoleSysUserByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="roleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_DeleteSysRoleSysUserByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_GetRightByRoleAndModule" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="roleId" Type="varchar" Mode="In" />
+          <Parameter Name="moduleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_GetRightOperate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+          <Parameter Name="url" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_GetRoleByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_GetUserByRoleId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RoleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_InsertSysRight" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="P_Sys_UpdateSysRightRightFlag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="moduleId" Type="varchar" Mode="In" />
+          <Parameter Name="roleId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="P_Sys_UpdateSysRoleSysUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="roleId" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getCustomerInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="timeSpan" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getMonthlyProductInfoByAddressId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="address_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getOrderInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="timeSpan" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getProductCategoryInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getProductInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="timeSpan" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getProductInfoByNameAndDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pName" Type="nvarchar" Mode="In" />
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getRegionProductInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="sp_wx_getSingleProductSaleInfoByNameAndDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startDate" Type="date" Mode="In" />
+          <Parameter Name="endDate" Type="date" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_zhsettle_getGoodsDealCategoryInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="tradeMode" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_zhsettle_getGoodsDealInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="startTime" Type="datetime" Mode="In" />
+          <Parameter Name="endTime" Type="datetime" Mode="In" />
+          <Parameter Name="tradeMode" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="DBStoreContainer">
+          <EntitySet Name="easyui_query_parameters" EntityType="Self.easyui_query_parameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="easyuicolumn" EntityType="Self.easyuicolumn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="easyuigrid" EntityType="Self.easyuigrid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="highchart" EntityType="Self.highchart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="highchart_column" EntityType="Self.highchart_column" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysException" EntityType="Self.SysException" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysLog" EntityType="Self.SysLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysModule" EntityType="Self.SysModule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysModuleOperate" EntityType="Self.SysModuleOperate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRight" EntityType="Self.SysRight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRightOperate" EntityType="Self.SysRightOperate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRole" EntityType="Self.SysRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysRoleSysUser" EntityType="Self.SysRoleSysUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysSample" EntityType="Self.SysSample" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysUser" EntityType="Self.SysUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="univgrid" EntityType="Self.univgrid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="univgrid_parameter" EntityType="Self.univgrid_parameter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="univgrid_parameter_setup" EntityType="Self.univgrid_parameter_setup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_customer_order" EntityType="Self.wx_customer_order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_product" EntityType="Self.wx_product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_product_cart" EntityType="Self.wx_product_cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_product_cat" EntityType="Self.wx_product_cat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_product_salegoods" EntityType="Self.wx_product_salegoods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wx_service_points" EntityType="Self.wx_service_points" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZH_DAILY_GOODS_DEAL" EntityType="Self.ZH_DAILY_GOODS_DEAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZH_DIC_PRODUCT" EntityType="Self.ZH_DIC_PRODUCT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZH_GOODS_TYPE" EntityType="Self.ZH_GOODS_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZH_SETTLE_DEAL_MAIN" EntityType="Self.ZH_SETTLE_DEAL_MAIN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SysModule_SysModule" Association="Self.FK_SysModule_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysModule1" EntitySet="SysModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysModuleOperate_SysModule" Association="Self.FK_SysModuleOperate_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysModuleOperate" EntitySet="SysModuleOperate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRight_SysModule" Association="Self.FK_SysRight_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysRight" EntitySet="SysRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRight_SysRole" Association="Self.FK_SysRight_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRight" EntitySet="SysRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRightOperate_SysRight" Association="Self.FK_SysRightOperate_SysRight">
+            <End Role="SysRight" EntitySet="SysRight" />
+            <End Role="SysRightOperate" EntitySet="SysRightOperate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleSysUser_SysRole" Association="Self.FK_SysRoleSysUser_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRoleSysUser" EntitySet="SysRoleSysUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRoleSysUser_SysUser" Association="Self.FK_SysRoleSysUser_SysUser">
+            <End Role="SysUser" EntitySet="SysUser" />
+            <End Role="SysRoleSysUser" EntitySet="SysRoleSysUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SysException" EntityType="DB.SysException" />
+          <EntitySet Name="SysLog" EntityType="DB.SysLog" />
+          <EntitySet Name="SysModule" EntityType="DB.SysModule" />
+          <EntitySet Name="SysModuleOperate" EntityType="DB.SysModuleOperate" />
+          <EntitySet Name="SysRight" EntityType="DB.SysRight" />
+          <EntitySet Name="SysRightOperate" EntityType="DB.SysRightOperate" />
+          <EntitySet Name="SysRole" EntityType="DB.SysRole" />
+          <EntitySet Name="SysSample" EntityType="DB.SysSample" />
+          <EntitySet Name="SysUser" EntityType="DB.SysUser" />
+          <EntitySet Name="wx_product" EntityType="DB.wx_product" />
+          <EntitySet Name="wx_product_cart" EntityType="DB.wx_product_cart" />
+          <EntitySet Name="wx_product_cat" EntityType="DB.wx_product_cat" />
+          <EntitySet Name="wx_product_salegoods" EntityType="DB.wx_product_salegoods" />
+          <EntitySet Name="wx_service_points" EntityType="DB.wx_service_points" />
+          <EntitySet Name="ZH_DIC_PRODUCT" EntityType="DB.ZH_DIC_PRODUCT" />
+          <EntitySet Name="ZH_GOODS_TYPE" EntityType="DB.ZH_GOODS_TYPE" />
+          <EntitySet Name="ZH_SETTLE_DEAL_MAIN" EntityType="DB.ZH_SETTLE_DEAL_MAIN" />
+          <AssociationSet Name="FK_SysModule_SysModule" Association="DB.FK_SysModule_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysModule1" EntitySet="SysModule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysModuleOperate_SysModule" Association="DB.FK_SysModuleOperate_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysModuleOperate" EntitySet="SysModuleOperate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRight_SysModule" Association="DB.FK_SysRight_SysModule">
+            <End Role="SysModule" EntitySet="SysModule" />
+            <End Role="SysRight" EntitySet="SysRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRight_SysRole" Association="DB.FK_SysRight_SysRole">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysRight" EntitySet="SysRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SysRightOperate_SysRight" Association="DB.FK_SysRightOperate_SysRight">
+            <End Role="SysRight" EntitySet="SysRight" />
+            <End Role="SysRightOperate" EntitySet="SysRightOperate" />
+          </AssociationSet>
+          <AssociationSet Name="SysRoleSysUser" Association="DB.SysRoleSysUser">
+            <End Role="SysRole" EntitySet="SysRole" />
+            <End Role="SysUser" EntitySet="SysUser" />
+          </AssociationSet>
+          <FunctionImport Name="P_Sys_ClearUnusedRightOperate" />
+          <FunctionImport Name="P_Sys_DeleteSysRoleSysUserByRoleId">
+          <Parameter Name="roleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_DeleteSysRoleSysUserByUserId">
+          <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_GetRightByRoleAndModule" ReturnType="Collection(DB.P_Sys_GetRightByRoleAndModule_Result)">
+            <Parameter Name="roleId" Mode="In" Type="String" />
+            <Parameter Name="moduleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_GetRightOperate" ReturnType="Collection(DB.P_Sys_GetRightOperate_Result)">
+            <Parameter Name="userId" Mode="In" Type="String" />
+            <Parameter Name="url" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_GetRoleByUserId" ReturnType="Collection(DB.P_Sys_GetRoleByUserId_Result)">
+          <Parameter Name="UserId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_GetUserByRoleId" ReturnType="Collection(DB.P_Sys_GetUserByRoleId_Result)">
+          <Parameter Name="RoleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_InsertSysRight" />
+          <FunctionImport Name="P_Sys_UpdateSysRightRightFlag">
+            <Parameter Name="moduleId" Mode="In" Type="String" />
+            <Parameter Name="roleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_UpdateSysRoleSysUser">
+            <Parameter Name="roleId" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getCustomerInfo" ReturnType="Collection(DB.sp_wx_getCustomerInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="timeSpan" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getMonthlyProductInfoByAddressId" ReturnType="Collection(DB.sp_wx_getMonthlyProductInfoByAddressId_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="address_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getOrderInfo" ReturnType="Collection(DB.sp_wx_getOrderInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="timeSpan" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getProductCategoryInfo" ReturnType="Collection(DB.sp_wx_getProductCategoryInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getProductInfo" ReturnType="Collection(DB.sp_wx_getProductInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="timeSpan" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getProductInfoByNameAndDate" ReturnType="Collection(DB.sp_wx_getProductInfoByNameAndDate_Result)">
+            <Parameter Name="pName" Mode="In" Type="String" />
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getRegionProductInfo" ReturnType="Collection(DB.sp_wx_getRegionProductInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_wx_getSingleProductSaleInfoByNameAndDate" ReturnType="Collection(DB.sp_wx_getSingleProductSaleInfoByNameAndDate_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_zhsettle_getGoodsDealCategoryInfo" ReturnType="Collection(DB.sp_zhsettle_getGoodsDealCategoryInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="tradeMode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_zhsettle_getGoodsDealInfo" ReturnType="Collection(DB.sp_zhsettle_getGoodsDealInfo_Result)">
+            <Parameter Name="startTime" Mode="In" Type="DateTime" />
+            <Parameter Name="endTime" Mode="In" Type="DateTime" />
+            <Parameter Name="tradeMode" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_Sys_DeleteRightByRoleId">
+          <Parameter Name="roleId" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="wx_customer_order" EntityType="DB.wx_customer_order" />
+          <EntitySet Name="ZH_DAILY_GOODS_DEAL" EntityType="DB.ZH_DAILY_GOODS_DEAL" />
+          <EntitySet Name="easyui_query_parameters" EntityType="DB.easyui_query_parameters" />
+          <EntitySet Name="univgrid" EntityType="DB.univgrid" />
+          <EntitySet Name="univgrid_parameter" EntityType="DB.univgrid_parameter" />
+          <EntitySet Name="univgrid_parameter_setup" EntityType="DB.univgrid_parameter_setup" />
+          <EntitySet Name="easyuicolumn" EntityType="DB.easyuicolumn" />
+          <EntitySet Name="highchart" EntityType="DB.highchart" />
+          <EntitySet Name="highchart_column" EntityType="DB.highchart_column" />
+          <EntitySet Name="easyuigrid" EntityType="DB.easyuigrid" />
+        </EntityContainer>
+        <EntityType Name="SysException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HelpLink" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Source" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TargetSite" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SysLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Operator" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Result" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Module" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SysModule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EnglishName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Iconic" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sort" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="Enable" Type="Boolean" />
+          <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsLast" Type="Boolean" Nullable="false" />
+          <Property Name="Version" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="SysModule1" Relationship="DB.FK_SysModule_SysModule" FromRole="SysModule" ToRole="SysModule1" />
+          <NavigationProperty Name="SysModule2" Relationship="DB.FK_SysModule_SysModule" FromRole="SysModule1" ToRole="SysModule" />
+          <NavigationProperty Name="SysModuleOperate" Relationship="DB.FK_SysModuleOperate_SysModule" FromRole="SysModule" ToRole="SysModuleOperate" />
+          <NavigationProperty Name="SysRight" Relationship="DB.FK_SysRight_SysModule" FromRole="SysModule" ToRole="SysRight" />
+        </EntityType>
+        <EntityType Name="SysModuleOperate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="KeyCode" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ModuleId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SysModule" Relationship="DB.FK_SysModuleOperate_SysModule" FromRole="SysModuleOperate" ToRole="SysModule" />
+        </EntityType>
+        <EntityType Name="SysRight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ModuleId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rightflag" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SysModule" Relationship="DB.FK_SysRight_SysModule" FromRole="SysRight" ToRole="SysModule" />
+          <NavigationProperty Name="SysRole" Relationship="DB.FK_SysRight_SysRole" FromRole="SysRight" ToRole="SysRole" />
+          <NavigationProperty Name="SysRightOperate" Relationship="DB.FK_SysRightOperate_SysRight" FromRole="SysRight" ToRole="SysRightOperate" />
+        </EntityType>
+        <EntityType Name="SysRightOperate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RightId" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="KeyCode" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SysRight" Relationship="DB.FK_SysRightOperate_SysRight" FromRole="SysRightOperate" ToRole="SysRight" />
+        </EntityType>
+        <EntityType Name="SysRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatePerson" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SysRight" Relationship="DB.FK_SysRight_SysRole" FromRole="SysRole" ToRole="SysRight" />
+          <NavigationProperty Name="SysUser" Relationship="DB.SysRoleSysUser" FromRole="SysRole" ToRole="SysUser" />
+        </EntityType>
+        <EntityType Name="SysSample">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Bir" Type="DateTime" Precision="3" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="SysUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TrueName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Card" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="QQ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OtherContact" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Village" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="Boolean" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="JoinDate" Type="DateTime" Precision="3" />
+          <Property Name="Marital" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Political" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Native" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="School" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Professional" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DepId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PosId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Expertise" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="JobState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Attach" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SysRole" Relationship="DB.SysRoleSysUser" FromRole="SysUser" ToRole="SysRole" />
+        </EntityType>
+        <EntityType Name="wx_product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="catid" Type="Int16" Nullable="false" />
+          <Property Name="storeid" Type="Int16" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="oprice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="discount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="intro" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="keyword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="salecount" Type="Int16" Nullable="false" />
+          <Property Name="logourl" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="dining" Type="Byte" Nullable="false" />
+          <Property Name="groupon" Type="Byte" Nullable="false" />
+          <Property Name="endtime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fakemembercount" Type="Int16" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="sn" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="stock" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+          <Property Name="is_sell_use_stock" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wx_product_cart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wecha_id" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Int16" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="paid" Type="Byte" Nullable="false" />
+          <Property Name="pay_type" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="truename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderid" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="address_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wx_product_cat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="des" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="parentid" Type="Int32" Nullable="false" />
+          <Property Name="logourl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="dining" Type="Byte" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_index_display" Type="Int16" Nullable="false" />
+          <Property Name="sort" Type="Int32" Nullable="false" />
+          <Property Name="keyword" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="wx_product_salegoods">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderid" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="sn" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="address_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="wx_service_points">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="service_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ordernum" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ZH_DIC_PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_SN" />
+          </Key>
+          <Property Name="PRODUCT_SN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_ID" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LEVEL_ID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="LEVEL_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ALIAS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ENGLISH_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="REMARK" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IS_VALID" Type="Boolean" Nullable="false" />
+          <Property Name="SHORT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SPRODUCT_ID" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="SPRODUCT_NAME" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="IS_SELECTED" Type="Boolean" Nullable="false" />
+          <Property Name="PRODUCT_INMARKET_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT_ORDERNO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_ISVIEW" Type="Boolean" Nullable="false" />
+          <Property Name="PRODUCT_TYPE_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="is_promotion" Type="Boolean" Nullable="false" />
+          <Property Name="CHARGE_RATE" Type="Decimal" Precision="17" Scale="3" />
+        </EntityType>
+        <EntityType Name="ZH_GOODS_TYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_SN" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCT_TYPE_NAME" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ZH_SETTLE_DEAL_MAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="GOODS_CASH" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="MANAGE_FEE" Type="Decimal" Nullable="false" Precision="10" Scale="1" />
+          <Property Name="DEAL_COUNT" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEAL_TIME" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="FK_SysModule_SysModule">
+          <End Type="DB.SysModule" Role="SysModule" Multiplicity="0..1" />
+          <End Type="DB.SysModule" Role="SysModule1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysModule1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysModuleOperate_SysModule">
+          <End Type="DB.SysModule" Role="SysModule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB.SysModuleOperate" Role="SysModuleOperate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysModuleOperate">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRight_SysModule">
+          <End Type="DB.SysModule" Role="SysModule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB.SysRight" Role="SysRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysModule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRight">
+              <PropertyRef Name="ModuleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRight_SysRole">
+          <End Type="DB.SysRole" Role="SysRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB.SysRight" Role="SysRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRight">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SysRightOperate_SysRight">
+          <End Type="DB.SysRight" Role="SysRight" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DB.SysRightOperate" Role="SysRightOperate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SysRight">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysRightOperate">
+              <PropertyRef Name="RightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SysRoleSysUser">
+          <End Type="DB.SysRole" Role="SysRole" Multiplicity="*" />
+          <End Type="DB.SysUser" Role="SysUser" Multiplicity="*" />
+        </Association>
+        <ComplexType Name="P_Sys_GetRightByRoleAndModule_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="KeyCode" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ModuleId" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="isvalid" Nullable="false" />
+          <Property Type="Int32" Name="Sort" Nullable="false" />
+          <Property Type="String" Name="RightId" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="P_Sys_GetRightOperate_Result">
+          <Property Type="String" Name="KeyCode" Nullable="false" MaxLength="200" />
+          <Property Type="Boolean" Name="IsValid" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="P_Sys_GetRoleByUserId_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" />
+          <Property Type="DateTime" Name="CreateTime" Nullable="false" Precision="23" />
+          <Property Type="String" Name="CreatePerson" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="flag" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="P_Sys_GetUserByRoleId_Result">
+          <Property Type="String" Name="Id" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TrueName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Card" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="QQ" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="EmailAddress" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OtherContact" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Province" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Village" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="State" Nullable="true" />
+          <Property Type="DateTime" Name="CreateTime" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CreatePerson" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Sex" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="Birthday" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="JoinDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Marital" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Political" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Nationality" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Native" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="School" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Professional" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="DepId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PosId" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Expertise" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="JobState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Photo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Attach" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="flag" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getCustomerInfo_Result">
+          <Property Type="String" Name="truename" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="totalOrder" Nullable="true" />
+          <Property Type="Decimal" Name="totalOrderCR" Nullable="true" Precision="31" Scale="14" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+          <Property Type="Decimal" Name="totalCountCR" Nullable="true" Precision="31" Scale="14" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="totalPriceCR" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getMonthlyProductInfoByAddressId_Result">
+          <Property Type="Int32" Name="address_id" Nullable="true" />
+          <Property Type="String" Name="service_name" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="newDate" Nullable="true" MaxLength="61" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getOrderInfo_Result">
+          <Property Type="DateTime" Name="time" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="orderCount" Nullable="true" />
+          <Property Type="Decimal" Name="orderCR" Nullable="true" Precision="31" Scale="14" />
+          <Property Type="Decimal" Name="sale" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="saleCR" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getProductCategoryInfo_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getProductInfo_Result">
+          <Property Type="String" Name="sn" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+          <Property Type="Decimal" Name="countCR" Nullable="true" Precision="25" Scale="12" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="priceCR" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getProductInfoByNameAndDate_Result">
+          <Property Type="DateTime" Name="time" Nullable="false" Precision="23" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="count" Nullable="true" />
+          <Property Type="Decimal" Name="price" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getRegionProductInfo_Result">
+          <Property Type="Int32" Name="address_id" Nullable="true" />
+          <Property Type="String" Name="service_name" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_wx_getSingleProductSaleInfoByNameAndDate_Result">
+          <Property Type="String" Name="name" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="time" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="totalPrice" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_zhsettle_getGoodsDealCategoryInfo_Result">
+          <Property Type="String" Name="PRODUCT_TYPE_NAME" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="totalCount" Nullable="true" />
+          <Property Type="Decimal" Name="realCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_zhsettle_getGoodsDealInfo_Result">
+          <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="AMOUNT" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="COUNT" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="wx_customer_order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="truename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="wechat_id" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="totalOrder" Type="Int32" Nullable="false" />
+          <Property Name="time" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="totalCount" Type="Int32" Nullable="false" />
+          <Property Name="totalPrice" Type="Decimal" Nullable="false" Precision="15" Scale="3" />
+        </EntityType>
+        <EntityType Name="ZH_DAILY_GOODS_DEAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="PRODUCT_SN" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="15" Scale="3" />
+          <Property Name="COUNT" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="FEE" Type="Decimal" Precision="7" Scale="1" />
+          <Property Name="DEAL_DATE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TRADE_MODE" Type="Int32" Nullable="false" />
+          <Property Name="AVG_AMOUNT" Type="Decimal" Nullable="false" Precision="15" Scale="3" />
+          <Property Name="ID" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="easyui_query_parameters">
+          <Key>
+            <PropertyRef Name="easyuigrid_id" />
+          </Key>
+          <Property Name="easyuigrid_id" Type="Int32" Nullable="false" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="univgrid">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="Int32" Nullable="false" />
+          <Property Name="univgrid_type" Type="Int16" Nullable="false" />
+          <Property Name="module_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="univgrid_parameter">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="param_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="Int32" Nullable="false" />
+          <Property Name="param_id" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="univgrid_parameter_setup">
+          <Key>
+            <PropertyRef Name="param_id" />
+          </Key>
+          <Property Name="param_id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="easyuicolumn">
+          <Key>
+            <PropertyRef Name="easyuigrid_id" />
+            <PropertyRef Name="field" />
+          </Key>
+          <Property Name="easyuigrid_id" Type="Int32" Nullable="false" />
+          <Property Name="field" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="field_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="width" Type="Int32" Nullable="false" />
+          <Property Name="sortable" Type="Boolean" Nullable="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ordernum" Type="Int32" />
+        </EntityType>
+        <EntityType Name="highchart">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="chartid" />
+          </Key>
+          <Property Name="univgrid_id" Type="Int32" Nullable="false" />
+          <Property Name="chartid" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="height" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chartmode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="chart" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tooltip" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="xAxis" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="yAxis" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="plotOptions" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="series" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="highchart_column">
+          <Key>
+            <PropertyRef Name="chartid" />
+            <PropertyRef Name="field" />
+          </Key>
+          <Property Name="chartid" Type="Int32" Nullable="false" />
+          <Property Name="field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="field_type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="field_display" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="easyuigrid">
+          <Key>
+            <PropertyRef Name="univgrid_id" />
+            <PropertyRef Name="easyuigrid_id" />
+          </Key>
+          <Property Name="univgrid_id" Type="Int32" Nullable="false" />
+          <Property Name="easyuigrid_id" Type="Int32" Nullable="false" />
+          <Property Name="width" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="height" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="methord" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fitColumns" Type="Boolean" Nullable="false" />
+          <Property Name="sortName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sortOrder" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idField" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="pageSize" Type="Int32" />
+          <Property Name="pageList" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="pagination" Type="Boolean" />
+          <Property Name="remoteSort" Type="Boolean" Nullable="false" />
+          <Property Name="showFooter" Type="Boolean" Nullable="false" />
+          <Property Name="striped" Type="Boolean" Nullable="false" />
+          <Property Name="singleSelect" Type="Boolean" Nullable="false" />
+          <Property Name="rownumbers" Type="Boolean" Nullable="false" />
+          <Property Name="onClickCell" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="mod_user" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mod_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DB" />
+        <Alias Key="Target" Value="DB.Store" />
+        <EntityContainerMapping CdmEntityContainer="DBContainer" StorageEntityContainer="DBStoreContainer">
+          <EntitySetMapping Name="SysException">
+            <EntityTypeMapping TypeName="DB.SysException">
+              <MappingFragment StoreEntitySet="SysException">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="TargetSite" ColumnName="TargetSite" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="HelpLink" ColumnName="HelpLink" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysLog">
+            <EntityTypeMapping TypeName="DB.SysLog">
+              <MappingFragment StoreEntitySet="SysLog">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysModule">
+            <EntityTypeMapping TypeName="DB.SysModule">
+              <MappingFragment StoreEntitySet="SysModule">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="IsLast" ColumnName="IsLast" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="Enable" ColumnName="Enable" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Iconic" ColumnName="Iconic" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysModuleOperate">
+            <EntityTypeMapping TypeName="DB.SysModuleOperate">
+              <MappingFragment StoreEntitySet="SysModuleOperate">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRight">
+            <EntityTypeMapping TypeName="DB.SysRight">
+              <MappingFragment StoreEntitySet="SysRight">
+                <ScalarProperty Name="Rightflag" ColumnName="Rightflag" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRightOperate">
+            <EntityTypeMapping TypeName="DB.SysRightOperate">
+              <MappingFragment StoreEntitySet="SysRightOperate">
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="RightId" ColumnName="RightId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysRole">
+            <EntityTypeMapping TypeName="DB.SysRole">
+              <MappingFragment StoreEntitySet="SysRole">
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysSample">
+            <EntityTypeMapping TypeName="DB.SysSample">
+              <MappingFragment StoreEntitySet="SysSample">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Bir" ColumnName="Bir" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SysUser">
+            <EntityTypeMapping TypeName="DB.SysUser">
+              <MappingFragment StoreEntitySet="SysUser">
+                <ScalarProperty Name="Attach" ColumnName="Attach" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="JobState" ColumnName="JobState" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+                <ScalarProperty Name="PosId" ColumnName="PosId" />
+                <ScalarProperty Name="DepId" ColumnName="DepId" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Professional" ColumnName="Professional" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Native" ColumnName="Native" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Political" ColumnName="Political" />
+                <ScalarProperty Name="Marital" ColumnName="Marital" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="OtherContact" ColumnName="OtherContact" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Card" ColumnName="Card" />
+                <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wx_product">
+            <EntityTypeMapping TypeName="DB.wx_product">
+              <MappingFragment StoreEntitySet="wx_product">
+                <ScalarProperty Name="is_sell_use_stock" ColumnName="is_sell_use_stock" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="fakemembercount" ColumnName="fakemembercount" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="groupon" ColumnName="groupon" />
+                <ScalarProperty Name="dining" ColumnName="dining" />
+                <ScalarProperty Name="logourl" ColumnName="logourl" />
+                <ScalarProperty Name="salecount" ColumnName="salecount" />
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="intro" ColumnName="intro" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="oprice" ColumnName="oprice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="storeid" ColumnName="storeid" />
+                <ScalarProperty Name="catid" ColumnName="catid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wx_product_cart">
+            <EntityTypeMapping TypeName="DB.wx_product_cart">
+              <MappingFragment StoreEntitySet="wx_product_cart">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="truename" ColumnName="truename" />
+                <ScalarProperty Name="pay_type" ColumnName="pay_type" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="wecha_id" ColumnName="wecha_id" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wx_product_cat">
+            <EntityTypeMapping TypeName="DB.wx_product_cat">
+              <MappingFragment StoreEntitySet="wx_product_cat">
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="is_index_display" ColumnName="is_index_display" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="dining" ColumnName="dining" />
+                <ScalarProperty Name="logourl" ColumnName="logourl" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="des" ColumnName="des" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wx_product_salegoods">
+            <EntityTypeMapping TypeName="DB.wx_product_salegoods">
+              <MappingFragment StoreEntitySet="wx_product_salegoods">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wx_service_points">
+            <EntityTypeMapping TypeName="DB.wx_service_points">
+              <MappingFragment StoreEntitySet="wx_service_points">
+                <ScalarProperty Name="ordernum" ColumnName="ordernum" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZH_DIC_PRODUCT">
+            <EntityTypeMapping TypeName="DB.ZH_DIC_PRODUCT">
+              <MappingFragment StoreEntitySet="ZH_DIC_PRODUCT">
+                <ScalarProperty Name="CHARGE_RATE" ColumnName="CHARGE_RATE" />
+                <ScalarProperty Name="is_promotion" ColumnName="is_promotion" />
+                <ScalarProperty Name="PRODUCT_TYPE_ID" ColumnName="PRODUCT_TYPE_ID" />
+                <ScalarProperty Name="PRODUCT_ISVIEW" ColumnName="PRODUCT_ISVIEW" />
+                <ScalarProperty Name="PRODUCT_ORDERNO" ColumnName="PRODUCT_ORDERNO" />
+                <ScalarProperty Name="PRODUCT_INMARKET_NAME" ColumnName="PRODUCT_INMARKET_NAME" />
+                <ScalarProperty Name="IS_SELECTED" ColumnName="IS_SELECTED" />
+                <ScalarProperty Name="SPRODUCT_NAME" ColumnName="SPRODUCT_NAME" />
+                <ScalarProperty Name="SPRODUCT_ID" ColumnName="SPRODUCT_ID" />
+                <ScalarProperty Name="SHORT" ColumnName="SHORT" />
+                <ScalarProperty Name="IS_VALID" ColumnName="IS_VALID" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="ENGLISH_NAME" ColumnName="ENGLISH_NAME" />
+                <ScalarProperty Name="ALIAS" ColumnName="ALIAS" />
+                <ScalarProperty Name="LEVEL_NAME" ColumnName="LEVEL_NAME" />
+                <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_ID" ColumnName="PRODUCT_ID" />
+                <ScalarProperty Name="PRODUCT_SN" ColumnName="PRODUCT_SN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZH_GOODS_TYPE">
+            <EntityTypeMapping TypeName="DB.ZH_GOODS_TYPE">
+              <MappingFragment StoreEntitySet="ZH_GOODS_TYPE">
+                <ScalarProperty Name="PRODUCT_TYPE_NAME" ColumnName="PRODUCT_TYPE_NAME" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_SN" ColumnName="PRODUCT_SN" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZH_SETTLE_DEAL_MAIN">
+            <EntityTypeMapping TypeName="DB.ZH_SETTLE_DEAL_MAIN">
+              <MappingFragment StoreEntitySet="ZH_SETTLE_DEAL_MAIN">
+                <ScalarProperty Name="DEAL_TIME" ColumnName="DEAL_TIME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DEAL_COUNT" ColumnName="DEAL_COUNT" />
+                <ScalarProperty Name="MANAGE_FEE" ColumnName="MANAGE_FEE" />
+                <ScalarProperty Name="GOODS_CASH" ColumnName="GOODS_CASH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="SysRoleSysUser" TypeName="DB.SysRoleSysUser" StoreEntitySet="SysRoleSysUser">
+            <EndProperty Name="SysUser">
+              <ScalarProperty Name="Id" ColumnName="SysUserId" />
+            </EndProperty>
+            <EndProperty Name="SysRole">
+              <ScalarProperty Name="Id" ColumnName="SysRoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_ClearUnusedRightOperate" FunctionName="DB.Store.P_Sys_ClearUnusedRightOperate" />
+          <FunctionImportMapping FunctionImportName="P_Sys_DeleteSysRoleSysUserByRoleId" FunctionName="DB.Store.P_Sys_DeleteSysRoleSysUserByRoleId" />
+          <FunctionImportMapping FunctionImportName="P_Sys_DeleteSysRoleSysUserByUserId" FunctionName="DB.Store.P_Sys_DeleteSysRoleSysUserByUserId" />
+          <FunctionImportMapping FunctionImportName="P_Sys_GetRightByRoleAndModule" FunctionName="DB.Store.P_Sys_GetRightByRoleAndModule">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.P_Sys_GetRightByRoleAndModule_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="ModuleId" ColumnName="ModuleId" />
+                <ScalarProperty Name="isvalid" ColumnName="isvalid" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="RightId" ColumnName="RightId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_GetRightOperate" FunctionName="DB.Store.P_Sys_GetRightOperate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.P_Sys_GetRightOperate_Result">
+                <ScalarProperty Name="KeyCode" ColumnName="KeyCode" />
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_GetRoleByUserId" FunctionName="DB.Store.P_Sys_GetRoleByUserId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.P_Sys_GetRoleByUserId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_GetUserByRoleId" FunctionName="DB.Store.P_Sys_GetUserByRoleId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.P_Sys_GetUserByRoleId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+                <ScalarProperty Name="Card" ColumnName="Card" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="OtherContact" ColumnName="OtherContact" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+                <ScalarProperty Name="Marital" ColumnName="Marital" />
+                <ScalarProperty Name="Political" ColumnName="Political" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Native" ColumnName="Native" />
+                <ScalarProperty Name="School" ColumnName="School" />
+                <ScalarProperty Name="Professional" ColumnName="Professional" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="DepId" ColumnName="DepId" />
+                <ScalarProperty Name="PosId" ColumnName="PosId" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+                <ScalarProperty Name="JobState" ColumnName="JobState" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Attach" ColumnName="Attach" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_InsertSysRight" FunctionName="DB.Store.P_Sys_InsertSysRight" />
+          <FunctionImportMapping FunctionImportName="P_Sys_UpdateSysRightRightFlag" FunctionName="DB.Store.P_Sys_UpdateSysRightRightFlag" />
+          <FunctionImportMapping FunctionImportName="P_Sys_UpdateSysRoleSysUser" FunctionName="DB.Store.P_Sys_UpdateSysRoleSysUser" />
+          <FunctionImportMapping FunctionImportName="sp_wx_getCustomerInfo" FunctionName="DB.Store.sp_wx_getCustomerInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getCustomerInfo_Result">
+                <ScalarProperty Name="truename" ColumnName="truename" />
+                <ScalarProperty Name="totalOrder" ColumnName="totalOrder" />
+                <ScalarProperty Name="totalOrderCR" ColumnName="totalOrderCR" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="totalCountCR" ColumnName="totalCountCR" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalPriceCR" ColumnName="totalPriceCR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getMonthlyProductInfoByAddressId" FunctionName="DB.Store.sp_wx_getMonthlyProductInfoByAddressId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getMonthlyProductInfoByAddressId_Result">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="newDate" ColumnName="newDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getOrderInfo" FunctionName="DB.Store.sp_wx_getOrderInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getOrderInfo_Result">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="orderCount" ColumnName="orderCount" />
+                <ScalarProperty Name="orderCR" ColumnName="orderCR" />
+                <ScalarProperty Name="sale" ColumnName="sale" />
+                <ScalarProperty Name="saleCR" ColumnName="saleCR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getProductCategoryInfo" FunctionName="DB.Store.sp_wx_getProductCategoryInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getProductCategoryInfo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getProductInfo" FunctionName="DB.Store.sp_wx_getProductInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getProductInfo_Result">
+                <ScalarProperty Name="sn" ColumnName="sn" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="countCR" ColumnName="countCR" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="priceCR" ColumnName="priceCR" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getProductInfoByNameAndDate" FunctionName="DB.Store.sp_wx_getProductInfoByNameAndDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getProductInfoByNameAndDate_Result">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getRegionProductInfo" FunctionName="DB.Store.sp_wx_getRegionProductInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getRegionProductInfo_Result">
+                <ScalarProperty Name="address_id" ColumnName="address_id" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_wx_getSingleProductSaleInfoByNameAndDate" FunctionName="DB.Store.sp_wx_getSingleProductSaleInfoByNameAndDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_wx_getSingleProductSaleInfoByNameAndDate_Result">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_zhsettle_getGoodsDealCategoryInfo" FunctionName="DB.Store.sp_zhsettle_getGoodsDealCategoryInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_zhsettle_getGoodsDealCategoryInfo_Result">
+                <ScalarProperty Name="PRODUCT_TYPE_NAME" ColumnName="PRODUCT_TYPE_NAME" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="realCount" ColumnName="realCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_zhsettle_getGoodsDealInfo" FunctionName="DB.Store.sp_zhsettle_getGoodsDealInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB.sp_zhsettle_getGoodsDealInfo_Result">
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="P_Sys_DeleteRightByRoleId" FunctionName="DB.Store.P_Sys_DeleteRightByRoleId" />
+          <EntitySetMapping Name="wx_customer_order">
+            <EntityTypeMapping TypeName="DB.wx_customer_order">
+              <MappingFragment StoreEntitySet="wx_customer_order">
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="totalCount" ColumnName="totalCount" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="totalOrder" ColumnName="totalOrder" />
+                <ScalarProperty Name="wechat_id" ColumnName="wechat_id" />
+                <ScalarProperty Name="truename" ColumnName="truename" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZH_DAILY_GOODS_DEAL">
+            <EntityTypeMapping TypeName="DB.ZH_DAILY_GOODS_DEAL">
+              <MappingFragment StoreEntitySet="ZH_DAILY_GOODS_DEAL">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AVG_AMOUNT" ColumnName="AVG_AMOUNT" />
+                <ScalarProperty Name="TRADE_MODE" ColumnName="TRADE_MODE" />
+                <ScalarProperty Name="DEAL_DATE" ColumnName="DEAL_DATE" />
+                <ScalarProperty Name="FEE" ColumnName="FEE" />
+                <ScalarProperty Name="COUNT" ColumnName="COUNT" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_SN" ColumnName="PRODUCT_SN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="easyui_query_parameters">
+            <EntityTypeMapping TypeName="DB.easyui_query_parameters">
+              <MappingFragment StoreEntitySet="easyui_query_parameters">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="easyuigrid_id" ColumnName="easyuigrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="univgrid">
+            <EntityTypeMapping TypeName="DB.univgrid">
+              <MappingFragment StoreEntitySet="univgrid">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
+                <ScalarProperty Name="univgrid_type" ColumnName="univgrid_type" />
+                <ScalarProperty Name="univgrid_id" ColumnName="univgrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="univgrid_parameter">
+            <EntityTypeMapping TypeName="DB.univgrid_parameter">
+              <MappingFragment StoreEntitySet="univgrid_parameter">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="param_id" ColumnName="param_id" />
+                <ScalarProperty Name="univgrid_id" ColumnName="univgrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="univgrid_parameter_setup">
+            <EntityTypeMapping TypeName="DB.univgrid_parameter_setup">
+              <MappingFragment StoreEntitySet="univgrid_parameter_setup">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="param_id" ColumnName="param_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="easyuicolumn">
+            <EntityTypeMapping TypeName="DB.easyuicolumn">
+              <MappingFragment StoreEntitySet="easyuicolumn">
+                <ScalarProperty Name="ordernum" ColumnName="ordernum" />
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="sortable" ColumnName="sortable" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="field_type" ColumnName="field_type" />
+                <ScalarProperty Name="field" ColumnName="field" />
+                <ScalarProperty Name="easyuigrid_id" ColumnName="easyuigrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="highchart">
+            <EntityTypeMapping TypeName="DB.highchart">
+              <MappingFragment StoreEntitySet="highchart">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="series" ColumnName="series" />
+                <ScalarProperty Name="plotOptions" ColumnName="plotOptions" />
+                <ScalarProperty Name="yAxis" ColumnName="yAxis" />
+                <ScalarProperty Name="xAxis" ColumnName="xAxis" />
+                <ScalarProperty Name="tooltip" ColumnName="tooltip" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="chart" ColumnName="chart" />
+                <ScalarProperty Name="chartmode" ColumnName="chartmode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="chartid" ColumnName="chartid" />
+                <ScalarProperty Name="univgrid_id" ColumnName="univgrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="highchart_column">
+            <EntityTypeMapping TypeName="DB.highchart_column">
+              <MappingFragment StoreEntitySet="highchart_column">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="field_display" ColumnName="field_display" />
+                <ScalarProperty Name="field_type" ColumnName="field_type" />
+                <ScalarProperty Name="field" ColumnName="field" />
+                <ScalarProperty Name="chartid" ColumnName="chartid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="easyuigrid">
+            <EntityTypeMapping TypeName="DB.easyuigrid">
+              <MappingFragment StoreEntitySet="easyuigrid">
+                <ScalarProperty Name="mod_date" ColumnName="mod_date" />
+                <ScalarProperty Name="mod_user" ColumnName="mod_user" />
+                <ScalarProperty Name="onClickCell" ColumnName="onClickCell" />
+                <ScalarProperty Name="rownumbers" ColumnName="rownumbers" />
+                <ScalarProperty Name="singleSelect" ColumnName="singleSelect" />
+                <ScalarProperty Name="striped" ColumnName="striped" />
+                <ScalarProperty Name="showFooter" ColumnName="showFooter" />
+                <ScalarProperty Name="remoteSort" ColumnName="remoteSort" />
+                <ScalarProperty Name="pagination" ColumnName="pagination" />
+                <ScalarProperty Name="pageList" ColumnName="pageList" />
+                <ScalarProperty Name="pageSize" ColumnName="pageSize" />
+                <ScalarProperty Name="idField" ColumnName="idField" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+                <ScalarProperty Name="sortName" ColumnName="sortName" />
+                <ScalarProperty Name="fitColumns" ColumnName="fitColumns" />
+                <ScalarProperty Name="methord" ColumnName="methord" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="easyuigrid_id" ColumnName="easyuigrid_id" />
+                <ScalarProperty Name="univgrid_id" ColumnName="univgrid_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="SysSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Bir" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysSample" nillable="true" type="tns:SysSample" />
+  <xs:complexType name="ArrayOfSysSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysSample" nillable="true" type="tns:SysSample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysSample" nillable="true" type="tns:ArrayOfSysSample" />
+  <xs:complexType name="ArrayOfSysModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysModule" nillable="true" type="tns:SysModule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysModule" nillable="true" type="tns:ArrayOfSysModule" />
+  <xs:complexType name="SysModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Iconic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsLast" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sort" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SysModule1" nillable="true" type="tns:ArrayOfSysModule" />
+      <xs:element minOccurs="0" name="SysModule2" nillable="true" type="tns:SysModule" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysModule" nillable="true" type="tns:SysModule" />
+</xs:schema>

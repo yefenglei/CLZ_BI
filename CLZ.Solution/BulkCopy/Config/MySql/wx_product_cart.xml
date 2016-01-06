@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Server=localhost;Database=wx_data;Uid=root;Pwd=88426269;pooling=false;charset=utf8]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[wx_product_cart]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from wx_product_cart;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[SELECT id,token,wecha_id,orderid,truename,info,total,price,address_id,FROM_UNIXTIME(time,'%Y-%m-%d') as time,paid,pay_type FROM wx_product_cart where paid=1;]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[true]]>
+  </IsUsing>
+</root>

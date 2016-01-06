@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = DB3;Integrated Security = SSPI;]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[ZH_SETTLE_DEAL_MAIN]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from ZH_SETTLE_DEAL_MAIN;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[select CONVERT(varchar, DEAL_TIME, 111 ) as [DEAL_TIME],SUM(GOODS_CASH) as [GOODS_CASH],SUM(DEAL_COUNT) as [DEAL_COUNT],SUM(MANAGE_FEE) as [MANAGE_FEE] from [HISTORY_SETTLE_DEAL_MAIN] group by CONVERT(varchar, DEAL_TIME, 111 );]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[false]]>
+  </IsUsing>
+</root>

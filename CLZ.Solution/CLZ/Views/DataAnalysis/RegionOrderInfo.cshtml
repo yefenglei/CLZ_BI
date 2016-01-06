@@ -1,0 +1,448 @@
+﻿@{
+    ViewBag.Title = "各服务点订单信息";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+        <span><a id="month" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">本月</span></span></a></span>
+        <span><a id="12month" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近12个月</span></span></a></span>
+        <span><a id="24month" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近24个月</span></span></a></span>
+    </div>
+    <div class="search">开始日期：<input id="txtStartDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp; 结束日期：<input id="txtEndDate" type="text" class="easyui-datebox"><span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span></div>
+</div>
+<div style="width:50%;float:left;"><a id="allServicePointsOrder" href="#" class="easyui-linkbutton" >导出excel</a></div>
+<div style="width:50%;float:left;"><a id="allServicePointsRate" href="#" class="easyui-linkbutton" >导出excel</a></div>
+<div id="container" style="width:50%;height:400px;float:left;"></div>
+<div id="containerPie" style="width:50%;height:400px;float:left;"></div>
+
+
+@*<a href="#" class="easyui-linkbutton"  onclick="javascript:window.location='/DataAnalysis/ExportExcel?startDate=2015-01-01&endDate=2015-06-30'">导出excel</a>*@
+<div style="width:100%;float:left;"><a id="singleServicePoints" href="#" class="easyui-linkbutton" style="display:none;" >导出excel</a></div>
+<div id="containerDetail" style="width:100%;height:400px;float:left;"></div>
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+<script type="text/javascript">
+    $(function () {
+
+        // 初始化日期控件
+        var options = {
+            required: "false",
+            missingMessage: "必填项",
+            formatter: function (date) {
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                var d = date.getDate();
+                return y + "年" + (m < 10 ? ("0" + m) : m) + "月"; //+ (d < 10 ? ("0" + d) : d) + "日";
+            }
+        }
+        $("#txtStartDate").datebox(options);
+        $("#txtEndDate").datebox(options);
+
+        //$("#txtStartDate").datebox("setValue", GetDateByMonth(1));
+
+    });
+</script>
+
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+    var addressName;
+
+    //增加月 
+    function AddMonths(date, value) {
+        date.setMonth(date.getMonth() + value);
+        return date;
+    }
+    //增加天 
+    function AddDays(date, value) {
+        date.setDate(date.getDate() + value);
+        return date;
+    }
+    //增加时
+    function AddHours(date, value) {
+        date.setHours(date.getHours() + value);
+        return date;
+    }
+
+    // excel导出
+    $("#allServicePointsOrder").click(function () {
+        window.location = '/DataAnalysis/ExportAllServicePointOrders?startDate='+startDate+'&endDate='+endDate
+    });
+    $("#allServicePointsRate").click(function () {
+        window.location = '/DataAnalysis/ExportAllServicePointRate?startDate=' + startDate + '&endDate=' + endDate
+    });
+    $("#singleServicePoints").click(function () {
+        window.location = '/DataAnalysis/ExportSingleServicePoint?startDate=' + startDate + '&endDate=' + endDate + '&addressName=' + addressName
+    });
+
+    $(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null||endDate =="") {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+
+    });
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null) {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+
+    });
+
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        switch (id)
+        {
+            case 'month':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '12month':
+                startDate = GetDateByMonth(12);
+                endDate = now.toLocaleDateString();
+                break;
+            case '24month':
+                startDate = GetDateByMonth(24);
+                endDate = now.toLocaleDateString();
+                break;
+        }
+        GetChartOrderInfo();
+
+    });
+
+    //获取daySpan天之前的日期
+    function GetDateByMonth(monthSpan) {
+        var today = new Date();
+        var strYear = today.getFullYear();
+        var strMonth = today.getMonth() + 1;
+        var yearOffset = parseInt(monthSpan / 12);
+        var monthOffset = monthSpan % 12;
+        strMonth = strMonth - monthOffset;
+        while (strMonth <= 0) {
+            strMonth = strMonth + 12;
+            yearOffset = yearOffset + 1;
+        }
+
+        if (strMonth < 10) {
+            strMonth = "0" + strMonth;
+        }
+        var strTargetday = (strYear - yearOffset) + "/" + strMonth + "/01";
+        return strTargetday;
+    }
+
+
+    function GetChartOrderInfo() {
+        $.post('@Url.Action("GetWXRegionOrderInfo")', { "startDate": startDate, "endDate": endDate},
+            function (data) {
+                //准备数据
+                var addressArray = [];
+                var saleCountArray = [];
+                var salePriceArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    addressArray.push(data.rows[i].service_name);
+                    saleCountArray.push( data.rows[i].totalCount);
+                    salePriceArray.push( data.rows[i].totalPrice);
+                }
+
+
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'column'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '各服务点订单统计'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: addressArray  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '价格/人民币'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }, {
+                        title: {
+                            text: '数量/份'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    plotOptions: {
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        //alert('Category: ' + this.category + ', value: ' + this.y);
+                                        addressName = this.category
+                                        loadDetailChart();
+                                    }
+                                }
+                            }
+                        },
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: true
+                        }
+                    },
+                    series: [{                                 //指定数据列
+                        name: '订单数量',                          //数据列名
+                        yAxis:1,
+                        data: saleCountArray                   //数据
+                    }, {
+                        name: '销售额',
+                        yAxis:0,
+                        data: salePriceArray
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            }, "json");
+
+        loadPieChartData();
+    }
+
+
+    // 获取饼图信息
+    function loadPieChartData() {
+        //商品销售信息
+        var url = '@Url.Action("GetWXRegionOrderInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var prodCategoryArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    prodCategoryArray.push([data.rows[i].service_name, data.rows[i].totalCount]);
+                }
+
+                $('#containerPie').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: '订单数占比'      //指定图表标题
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            },
+                            showInLegend: true
+                        },
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        //alert('Category: ' + this.name + ', value: ' + this.percentage);
+                                        addressName = this.name
+                                        loadDetailChart();
+                                        $("#singleServicePoints").show();
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'pie',                               //指定数据列
+                        name: '订单数占比',                          //数据列名
+                        data: prodCategoryArray                   //数据
+                        
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+
+                //Highcharts.getOptions().colors = oldColors;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+
+    function loadDetailChart() {
+        $.post('@Url.Action("GetWXMonthlyOrderInfoByAddressId")', { "startDate": startDate, "endDate": endDate, "addressName": addressName },
+            function (data) {
+                //准备数据
+                var dateArray = [];
+                var saleCountArray = [];
+                var salePriceArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    dateArray.push(data.rows[i].newDate);
+                    saleCountArray.push(data.rows[i].totalCount);
+                    salePriceArray.push(data.rows[i].totalPrice);
+                }
+
+                // 图表
+                $('#containerDetail').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'spline'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: addressName + '订单统计'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: dateArray  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '价格/人民币'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }
+                    , {
+                        title: {
+                            text: '数量/份'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    plotOptions: {
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        //alert('Category: ' + this.category + ', value: ' + this.y);
+                                        var tmpStartDate = this.category
+                                        var sd = new Date(tmpStartDate.split('/')[0], parseInt(tmpStartDate.split('/')[1]), 1, 0, 0, 0);
+                                        var ed = AddMonths(sd, 1);
+                                        var tmpEndDate = ed.getFullYear() + '/' + ed.getMonth();
+                                        loadMonthData(tmpStartDate, tmpEndDate, addressName);
+                                    }
+                                }
+                            }
+                        },
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: true
+                        }
+                    },
+                    series: [{                                 //指定数据列
+                        name: '订单数量',                          //数据列名
+                        yAxis: 1,
+                        data: saleCountArray                   //数据
+                    }, {
+                        name: '销售额',
+                        yAxis: 0,
+                        data: salePriceArray
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+
+
+
+            }, "json");
+    }
+
+
+    function loadMonthData(sd, ed, addressName) {
+        $.post('@Url.Action("GetProductOrderInfoByAddressId")', { "startDate": sd, "endDate": ed, "addressName": addressName },
+            function (data) {
+                $('#containerDetail').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'line'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '订单统计'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: data.categories  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '价格/人民币'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }, {
+                        title: {
+                            text: '数量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    series: [{                                 //指定数据列
+                        name: '订单数量',                          //数据列名
+                        yAxis: 1,
+                        data: data.series.orderList                   //数据
+                    }, {
+                        name: '销售额',
+                        yAxis: 0,
+                        data: data.series.saleList
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            }, "json");
+    }
+
+</script>

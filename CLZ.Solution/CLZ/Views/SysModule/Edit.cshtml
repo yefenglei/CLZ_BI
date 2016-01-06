@@ -1,0 +1,166 @@
+﻿@model CLZ.CLZService.SysModule
+@using CLZ.Common;
+@using CLZ.Core;
+@using CLZ.Model.Sys;
+
+@{
+    ViewBag.Title = "修改";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+    List<permModel> perm = (List<permModel>)ViewBag.Perm;
+    if (perm == null)
+    {
+        perm = new List<permModel>();
+    }
+}
+
+<script type="text/javascript">
+$(function () {
+    $("#btnSave").click(function () {
+        if ($("#EditForm").form('validate')) {
+            $.ajax({
+                url: "@Url.Action("Edit")",
+                type: "Post",
+                data: $("form").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (data.type == 1) {
+                        window.parent.frameReturnByMes(data.message);
+                        window.parent.frameReturnByReload(true);
+                        window.parent.frameReturnByClose()
+                    }
+                    else {
+                        window.parent.frameReturnByMes(data.message);
+                    }
+                }
+            });
+        }
+        return false;
+    });
+    $("#btnReturn").click(function () {
+         window.parent.frameReturnByClose();
+    });
+
+    $("#selectImage").click(function () {
+        $("#imageContainer").show();
+    });
+    $("#imageContainer").mousemove(function (e) {
+        var x = e.clientX - $("#imageContainer").offset().left;
+        var y = e.clientY - $("#imageContainer").offset().top;
+        var sc = $(this);
+        var scH = sc.scrollTop()
+        $("#position").text("x:"+x+"   y:"+y+"  scH:"+scH);
+    }).click(function (e) {
+        var sc = $(this);
+        var scH = sc.scrollTop();
+        var x = e.clientX - $("#imageContainer").offset().left;
+        var y = e.clientY - $("#imageContainer").offset().top + scH;
+        var row = parseInt(x / 16);
+        var col = parseInt(y / 16);
+        var index = 25 * col + row + 1;
+        var imgClass = "pic_" + index;
+        //$("#position").text("index:" + imgClass);
+        $("#icon").removeClass().addClass(imgClass);
+        $("#imageContainer").hide();
+        $("#Iconic").val(imgClass);
+    });
+
+});
+</script>
+
+@*<div><label id="position"></label></div>*@
+<div class="mvctool bgb">
+    @Html.ToolButton("btnSave", "icon-save", "保存", perm, "Save", true)
+    @Html.ToolButton("btnReturn", "icon-return", "返回", false)
+</div>
+@using (Html.BeginForm("Edit", "SysModule", null, FormMethod.Post, new { Id = "EditForm" }))
+{
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.CreateTime)
+    @Html.HiddenFor(model => model.CreatePerson)
+    <table class="fromEditTable setTextWidth300">
+        <tbody>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Name)：
+                </td>
+                <td style="width:310px">
+                    @Html.EditorFor(model => model.Name)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.ParentId)：
+                </td>
+                <td style="width:310px">
+                    @Html.EditorFor(model => model.ParentId)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.ParentId)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Url)：
+                </td>
+                <td style="width:310px">
+                    @Html.EditorFor(model => model.Url)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Url)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Iconic)：
+                </td>
+                @{
+                    string icon = @Model.Iconic;
+                }
+                <td style="width:310px;">
+                    @Html.HiddenFor(model => model.Iconic)
+                    <div id="icon" class="@icon"></div><a href="#" id="selectImage" class="easyui-linkbutton" style="position:absolute;margin-top:-20px;margin-left:20px;">选择</a>
+                    <div id="imageContainer" style="width: 420px; height: 200px; display:none; overflow:auto;position:absolute;margin-top:10px;"><img src="/Content/Images/icon.png" /></div>
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Iconic)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Sort)：
+                </td>
+                <td style="width:310px">
+                    @Html.EditorFor(model => model.Sort)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Sort)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Remark)：
+                </td>
+                <td style="width:310px">
+                    @Html.EditorFor(model => model.Remark)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Remark)</td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Enable)：
+                </td>
+                <td style="width:310px">
+                    @{
+                        bool isEnable = @Model.Enable == null ? false : true;
+                    }
+                    @Html.CheckBox("Enable", isEnable)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.Enable)</td>
+            </tr>
+
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.IsLast)：
+                </td>
+                <td style="width:310px">
+                    @Html.CheckBoxFor(model => model.IsLast)
+                </td>
+                <td>@Html.ValidationMessageFor(model => model.IsLast)</td>
+            </tr>
+
+        </tbody>
+    </table>
+}

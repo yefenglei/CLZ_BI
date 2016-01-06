@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--This XML format is not an API-->
+<AnalysisOutput>
+  <Files>
+    <File>
+      <Path>D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.GlobalAssembly\Properties\AssemblyInfo.cs</Path>
+      <Metrics>
+        <Lines>37</Lines>
+        <Classes>0</Classes>
+        <Accessors>0</Accessors>
+        <Statements>0</Statements>
+        <Functions>0</Functions>
+        <PublicApi>0</PublicApi>
+        <PublicUndocumentedApi>0</PublicUndocumentedApi>
+        <Complexity>0</Complexity>
+        <FileComplexityDistribution>0=1;5=0;10=0;20=0;30=0;60=0;90=0</FileComplexityDistribution>
+        <FunctionComplexityDistribution>1=0;2=0;4=0;6=0;8=0;10=0;12=0</FunctionComplexityDistribution>
+        <Comments>
+          <NoSonar />
+          <NonBlank>
+            <Line>5</Line>
+            <Line>6</Line>
+            <Line>7</Line>
+            <Line>17</Line>
+            <Line>18</Line>
+            <Line>19</Line>
+            <Line>22</Line>
+            <Line>25</Line>
+            <Line>27</Line>
+            <Line>28</Line>
+            <Line>29</Line>
+            <Line>30</Line>
+            <Line>32</Line>
+            <Line>33</Line>
+            <Line>34</Line>
+          </NonBlank>
+        </Comments>
+        <LinesOfCode>
+          <Line>1</Line>
+          <Line>2</Line>
+          <Line>3</Line>
+          <Line>8</Line>
+          <Line>9</Line>
+          <Line>10</Line>
+          <Line>11</Line>
+          <Line>12</Line>
+          <Line>13</Line>
+          <Line>14</Line>
+          <Line>15</Line>
+          <Line>20</Line>
+          <Line>23</Line>
+          <Line>35</Line>
+          <Line>36</Line>
+        </LinesOfCode>
+      </Metrics>
+      <Issues />
+    </File>
+  </Files>
+</AnalysisOutput>

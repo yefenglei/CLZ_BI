@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="SysSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Age" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Bir" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysSample" nillable="true" type="tns:SysSample" />
+  <xs:complexType name="ArrayOfSysSample">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysSample" nillable="true" type="tns:SysSample" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysSample" nillable="true" type="tns:ArrayOfSysSample" />
+  <xs:complexType name="ArrayOfSysModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysModule" nillable="true" type="tns:SysModule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysModule" nillable="true" type="tns:ArrayOfSysModule" />
+  <xs:complexType name="SysModule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Enable" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="EnglishName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Iconic" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsLast" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sort" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SysModule1" nillable="true" type="tns:ArrayOfSysModule" />
+      <xs:element minOccurs="0" name="SysModule2" nillable="true" type="tns:SysModule" />
+      <xs:element minOccurs="0" name="SysModuleOperate" nillable="true" type="tns:ArrayOfSysModuleOperate" />
+      <xs:element minOccurs="0" name="SysRight" nillable="true" type="tns:ArrayOfSysRight" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysModule" nillable="true" type="tns:SysModule" />
+  <xs:complexType name="ArrayOfSysModuleOperate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysModuleOperate" nillable="true" type="tns:SysModuleOperate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysModuleOperate" nillable="true" type="tns:ArrayOfSysModuleOperate" />
+  <xs:complexType name="SysModuleOperate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModuleId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sort" type="xs:int" />
+      <xs:element minOccurs="0" name="SysModule" nillable="true" type="tns:SysModule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysModuleOperate" nillable="true" type="tns:SysModuleOperate" />
+  <xs:complexType name="ArrayOfSysRight">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysRight" nillable="true" type="tns:SysRight" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysRight" nillable="true" type="tns:ArrayOfSysRight" />
+  <xs:complexType name="SysRight">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModuleId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Rightflag" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RoleId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SysModule" nillable="true" type="tns:SysModule" />
+      <xs:element minOccurs="0" name="SysRightOperate" nillable="true" type="tns:ArrayOfSysRightOperate" />
+      <xs:element minOccurs="0" name="SysRole" nillable="true" type="tns:SysRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysRight" nillable="true" type="tns:SysRight" />
+  <xs:complexType name="ArrayOfSysRightOperate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysRightOperate" nillable="true" type="tns:SysRightOperate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysRightOperate" nillable="true" type="tns:ArrayOfSysRightOperate" />
+  <xs:complexType name="SysRightOperate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsValid" type="xs:boolean" />
+      <xs:element minOccurs="0" name="KeyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RightId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SysRight" nillable="true" type="tns:SysRight" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysRightOperate" nillable="true" type="tns:SysRightOperate" />
+  <xs:complexType name="SysRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SysRight" nillable="true" type="tns:ArrayOfSysRight" />
+      <xs:element minOccurs="0" name="SysUser" nillable="true" type="tns:ArrayOfSysUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysRole" nillable="true" type="tns:SysRole" />
+  <xs:complexType name="ArrayOfSysUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysUser" nillable="true" type="tns:SysUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysUser" nillable="true" type="tns:ArrayOfSysUser" />
+  <xs:complexType name="SysUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Attach" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Birthday" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Card" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Degree" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Expertise" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JobState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JoinDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Marital" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Native" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Political" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PosId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Professional" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="School" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="SysRole" nillable="true" type="tns:ArrayOfSysRole" />
+      <xs:element minOccurs="0" name="TrueName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Village" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysUser" nillable="true" type="tns:SysUser" />
+  <xs:complexType name="ArrayOfSysRole">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysRole" nillable="true" type="tns:SysRole" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysRole" nillable="true" type="tns:ArrayOfSysRole" />
+  <xs:complexType name="ArrayOfSysLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysLog" nillable="true" type="tns:SysLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysLog" nillable="true" type="tns:ArrayOfSysLog" />
+  <xs:complexType name="SysLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Module" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Operator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysLog" nillable="true" type="tns:SysLog" />
+  <xs:complexType name="ArrayOfSysException">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SysException" nillable="true" type="tns:SysException" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSysException" nillable="true" type="tns:ArrayOfSysException" />
+  <xs:complexType name="SysException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HelpLink" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StackTrace" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetSite" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SysException" nillable="true" type="tns:SysException" />
+  <xs:complexType name="ArrayOfP_Sys_GetRightByRoleAndModule_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P_Sys_GetRightByRoleAndModule_Result" nillable="true" type="tns:P_Sys_GetRightByRoleAndModule_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP_Sys_GetRightByRoleAndModule_Result" nillable="true" type="tns:ArrayOfP_Sys_GetRightByRoleAndModule_Result" />
+  <xs:complexType name="P_Sys_GetRightByRoleAndModule_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="KeyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModuleId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RightId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sort" type="xs:int" />
+      <xs:element minOccurs="0" name="isvalid" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P_Sys_GetRightByRoleAndModule_Result" nillable="true" type="tns:P_Sys_GetRightByRoleAndModule_Result" />
+  <xs:complexType name="ArrayOfP_Sys_GetRoleByUserId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P_Sys_GetRoleByUserId_Result" nillable="true" type="tns:P_Sys_GetRoleByUserId_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP_Sys_GetRoleByUserId_Result" nillable="true" type="tns:ArrayOfP_Sys_GetRoleByUserId_Result" />
+  <xs:complexType name="P_Sys_GetRoleByUserId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="flag" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P_Sys_GetRoleByUserId_Result" nillable="true" type="tns:P_Sys_GetRoleByUserId_Result" />
+  <xs:complexType name="ArrayOfP_Sys_GetUserByRoleId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="P_Sys_GetUserByRoleId_Result" nillable="true" type="tns:P_Sys_GetUserByRoleId_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfP_Sys_GetUserByRoleId_Result" nillable="true" type="tns:ArrayOfP_Sys_GetUserByRoleId_Result" />
+  <xs:complexType name="P_Sys_GetUserByRoleId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Attach" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Birthday" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Card" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreatePerson" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Degree" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Expertise" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JobState" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JoinDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Marital" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MobileNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nationality" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Native" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherContact" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Political" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PosId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Professional" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QQ" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="School" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TrueName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Village" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="flag" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="P_Sys_GetUserByRoleId_Result" nillable="true" type="tns:P_Sys_GetUserByRoleId_Result" />
+  <xs:complexType name="wx_service_points">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ordernum" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="service_name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="wx_service_points" nillable="true" type="tns:wx_service_points" />
+  <xs:complexType name="ArrayOfwx_product_cart">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="wx_product_cart" nillable="true" type="tns:wx_product_cart" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwx_product_cart" nillable="true" type="tns:ArrayOfwx_product_cart" />
+  <xs:complexType name="wx_product_cart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="info" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="orderid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="paid" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="pay_type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="total" type="xs:short" />
+      <xs:element minOccurs="0" name="truename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="wecha_id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="wx_product_cart" nillable="true" type="tns:wx_product_cart" />
+  <xs:complexType name="ArrayOfsp_wx_getOrderInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getOrderInfo_Result" nillable="true" type="tns:sp_wx_getOrderInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getOrderInfo_Result" nillable="true" type="tns:ArrayOfsp_wx_getOrderInfo_Result" />
+  <xs:complexType name="sp_wx_getOrderInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="orderCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="orderCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="sale" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="saleCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getOrderInfo_Result" nillable="true" type="tns:sp_wx_getOrderInfo_Result" />
+  <xs:complexType name="ArrayOfsp_wx_getCustomerInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getCustomerInfo_Result" nillable="true" type="tns:sp_wx_getCustomerInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getCustomerInfo_Result" nillable="true" type="tns:ArrayOfsp_wx_getCustomerInfo_Result" />
+  <xs:complexType name="sp_wx_getCustomerInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalCountCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalOrder" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalOrderCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalPriceCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="truename" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getCustomerInfo_Result" nillable="true" type="tns:sp_wx_getCustomerInfo_Result" />
+  <xs:complexType name="ArrayOfwx_customer_order">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="wx_customer_order" nillable="true" type="tns:wx_customer_order" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfwx_customer_order" nillable="true" type="tns:ArrayOfwx_customer_order" />
+  <xs:complexType name="wx_customer_order">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="totalCount" type="xs:int" />
+      <xs:element minOccurs="0" name="totalOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="truename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="wechat_id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="wx_customer_order" nillable="true" type="tns:wx_customer_order" />
+  <xs:complexType name="ArrayOfsp_wx_getProductInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getProductInfo_Result" nillable="true" type="tns:sp_wx_getProductInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getProductInfo_Result" nillable="true" type="tns:ArrayOfsp_wx_getProductInfo_Result" />
+  <xs:complexType name="sp_wx_getProductInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="countCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="priceCR" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="sn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getProductInfo_Result" nillable="true" type="tns:sp_wx_getProductInfo_Result" />
+  <xs:complexType name="ArrayOfsp_wx_getProductCategoryInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getProductCategoryInfo_Result" nillable="true" type="tns:sp_wx_getProductCategoryInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getProductCategoryInfo_Result" nillable="true" type="tns:ArrayOfsp_wx_getProductCategoryInfo_Result" />
+  <xs:complexType name="sp_wx_getProductCategoryInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:int" />
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getProductCategoryInfo_Result" nillable="true" type="tns:sp_wx_getProductCategoryInfo_Result" />
+  <xs:complexType name="ArrayOfsp_wx_getSingleProductSaleInfoByNameAndDate_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getSingleProductSaleInfoByNameAndDate_Result" nillable="true" type="tns:sp_wx_getSingleProductSaleInfoByNameAndDate_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getSingleProductSaleInfoByNameAndDate_Result" nillable="true" type="tns:ArrayOfsp_wx_getSingleProductSaleInfoByNameAndDate_Result" />
+  <xs:complexType name="sp_wx_getSingleProductSaleInfoByNameAndDate_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getSingleProductSaleInfoByNameAndDate_Result" nillable="true" type="tns:sp_wx_getSingleProductSaleInfoByNameAndDate_Result" />
+  <xs:complexType name="ArrayOfsp_wx_getRegionProductInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getRegionProductInfo_Result" nillable="true" type="tns:sp_wx_getRegionProductInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getRegionProductInfo_Result" nillable="true" type="tns:ArrayOfsp_wx_getRegionProductInfo_Result" />
+  <xs:complexType name="sp_wx_getRegionProductInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="service_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getRegionProductInfo_Result" nillable="true" type="tns:sp_wx_getRegionProductInfo_Result" />
+  <xs:complexType name="ArrayOfsp_wx_getMonthlyProductInfoByAddressId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_wx_getMonthlyProductInfoByAddressId_Result" nillable="true" type="tns:sp_wx_getMonthlyProductInfoByAddressId_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_wx_getMonthlyProductInfoByAddressId_Result" nillable="true" type="tns:ArrayOfsp_wx_getMonthlyProductInfoByAddressId_Result" />
+  <xs:complexType name="sp_wx_getMonthlyProductInfoByAddressId_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address_id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="newDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="service_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_wx_getMonthlyProductInfoByAddressId_Result" nillable="true" type="tns:sp_wx_getMonthlyProductInfoByAddressId_Result" />
+</xs:schema>

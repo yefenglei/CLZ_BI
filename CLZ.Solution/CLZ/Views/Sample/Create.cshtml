@@ -1,0 +1,95 @@
+﻿@model CLZ.CLZService.SysSample
+@using CLZ.Common;
+
+@{
+    ViewBag.Title = "创建";
+    Layout = "~/Views/Shared/_Index_LayoutEdit.cshtml";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+            if ($("#CreateForm").form('validate')) {
+                $.ajax({
+                    url: "/Sample/Create",
+                    type: "Post",
+                    data: $("#CreateForm").serialize(),
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.type == 1) {
+                            window.parent.frameReturnByMes(data.message);
+                            window.parent.frameReturnByReload(true);
+                            window.parent.frameReturnByClose()
+                        }
+                        else {
+                            window.parent.frameReturnByMes(data.message);
+                        }
+                    }
+                });
+            }
+            else {
+                //$.messageBox5s('提示','@Suggestion.ValidateFail' );
+            }
+            
+        });
+    });
+</script>
+
+
+<div class="mvctool bgb">
+    <a id="btnSave" style="float: left;" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-save" style="padding-left: 20px;">保存</span></span></a>
+</div>
+@using (Html.BeginForm("Create", "SysSample", null, FormMethod.Post, new { Id = "CreateForm" }))
+{
+    <table class="fromEditTable setTextWidth300">
+        <tbody>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Name)：
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Name, new { @class = "easyui-validatebox", data_options = "required:true" })
+                </td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Age)：
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(model => model.Age, new { @class = "easyui-numberspinner", data_options = "min:0,max:150,required:true" })
+                </td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Bir)：
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(model => model.Bir, new {@class="easyui-datebox" })
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Note)：
+                </td>
+
+                <td>
+                    @Html.TextBoxFor(model => model.Note)
+                </td>
+            </tr>
+            <tr>
+                <td style="width:100px; text-align:right;">
+                    @Html.LabelFor(model => model.Photo)：
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Photo)
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+

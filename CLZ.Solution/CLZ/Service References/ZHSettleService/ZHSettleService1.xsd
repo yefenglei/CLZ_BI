@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfZH_SETTLE_DEAL_MAIN">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZH_SETTLE_DEAL_MAIN" nillable="true" type="tns:ZH_SETTLE_DEAL_MAIN" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZH_SETTLE_DEAL_MAIN" nillable="true" type="tns:ArrayOfZH_SETTLE_DEAL_MAIN" />
+  <xs:complexType name="ZH_SETTLE_DEAL_MAIN">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DEAL_COUNT" type="xs:int" />
+      <xs:element minOccurs="0" name="DEAL_TIME" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="GOODS_CASH" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="MANAGE_FEE" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZH_SETTLE_DEAL_MAIN" nillable="true" type="tns:ZH_SETTLE_DEAL_MAIN" />
+  <xs:complexType name="ArrayOfZH_DAILY_GOODS_DEAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZH_DAILY_GOODS_DEAL" nillable="true" type="tns:ZH_DAILY_GOODS_DEAL" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZH_DAILY_GOODS_DEAL" nillable="true" type="tns:ArrayOfZH_DAILY_GOODS_DEAL" />
+  <xs:complexType name="ZH_DAILY_GOODS_DEAL">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AMOUNT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AVG_AMOUNT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COUNT" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DEAL_DATE" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FEE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ID" type="ser:guid" />
+      <xs:element minOccurs="0" name="PRODUCT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_SN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TRADE_MODE" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZH_DAILY_GOODS_DEAL" nillable="true" type="tns:ZH_DAILY_GOODS_DEAL" />
+  <xs:complexType name="ArrayOfsp_zhsettle_getGoodsDealInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_zhsettle_getGoodsDealInfo_Result" nillable="true" type="tns:sp_zhsettle_getGoodsDealInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_zhsettle_getGoodsDealInfo_Result" nillable="true" type="tns:ArrayOfsp_zhsettle_getGoodsDealInfo_Result" />
+  <xs:complexType name="sp_zhsettle_getGoodsDealInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AMOUNT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="COUNT" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PRODUCT_NAME" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_zhsettle_getGoodsDealInfo_Result" nillable="true" type="tns:sp_zhsettle_getGoodsDealInfo_Result" />
+  <xs:complexType name="ArrayOfsp_zhsettle_getGoodsDealCategoryInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="sp_zhsettle_getGoodsDealCategoryInfo_Result" nillable="true" type="tns:sp_zhsettle_getGoodsDealCategoryInfo_Result" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfsp_zhsettle_getGoodsDealCategoryInfo_Result" nillable="true" type="tns:ArrayOfsp_zhsettle_getGoodsDealCategoryInfo_Result" />
+  <xs:complexType name="sp_zhsettle_getGoodsDealCategoryInfo_Result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PRODUCT_TYPE_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="realCount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalCount" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sp_zhsettle_getGoodsDealCategoryInfo_Result" nillable="true" type="tns:sp_zhsettle_getGoodsDealCategoryInfo_Result" />
+  <xs:complexType name="ArrayOfZH_DIC_PRODUCT">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZH_DIC_PRODUCT" nillable="true" type="tns:ZH_DIC_PRODUCT" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZH_DIC_PRODUCT" nillable="true" type="tns:ArrayOfZH_DIC_PRODUCT" />
+  <xs:complexType name="ZH_DIC_PRODUCT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ALIAS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CHARGE_RATE" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ENGLISH_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IS_SELECTED" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IS_VALID" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LEVEL_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LEVEL_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_INMARKET_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ISVIEW" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PRODUCT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_ORDERNO" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_SN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_TYPE_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="REMARK" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SHORT" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPRODUCT_ID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SPRODUCT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="is_promotion" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZH_DIC_PRODUCT" nillable="true" type="tns:ZH_DIC_PRODUCT" />
+</xs:schema>

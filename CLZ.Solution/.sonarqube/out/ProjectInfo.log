@@ -1,0 +1,33 @@
+Product projects
+---------------------------------------
+D:\workspace\CLZ_MIS\CLZ.Solution\BulkCopy\BulkCopy.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.BLLService\CLZ.BLLService.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.Common\CLZ.Common.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.Core\CLZ.Core.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.GlobalAssembly\CLZ.GlobalAssembly.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.Model\CLZ.Model.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ\CLZ.csproj
+
+
+Test projects
+---------------------------------------
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.NUnitTest\CLZ.NUnitTest.csproj
+D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.UnitTest\CLZ.UnitTest.csproj
+
+
+Invalid projects
+---------------------------------------
+{none}
+{none}
+
+
+Skipped projects
+---------------------------------------
+{none}
+
+
+Excluded projects
+---------------------------------------
+{none}
+
+

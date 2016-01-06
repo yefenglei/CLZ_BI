@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model.CLZ" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model.CLZ" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfProductOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ProductOrder" nillable="true" type="tns:ProductOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProductOrder" nillable="true" type="tns:ArrayOfProductOrder" />
+  <xs:complexType name="ProductOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="address_id" type="xs:int" />
+      <xs:element minOccurs="0" name="address_name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="count" type="xs:int" />
+      <xs:element minOccurs="0" name="price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductOrder" nillable="true" type="tns:ProductOrder" />
+  <xs:complexType name="ArrayOfPurchaseRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PurchaseRate" nillable="true" type="tns:PurchaseRate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPurchaseRate" nillable="true" type="tns:ArrayOfPurchaseRate" />
+  <xs:complexType name="PurchaseRate">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="buyTimes" type="xs:int" />
+      <xs:element minOccurs="0" name="rate" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PurchaseRate" nillable="true" type="tns:PurchaseRate" />
+  <xs:complexType name="ArrayOfCustomerOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerOrder" nillable="true" type="tns:CustomerOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerOrder" nillable="true" type="tns:ArrayOfCustomerOrder" />
+  <xs:complexType name="CustomerOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="totalCount" type="xs:int" />
+      <xs:element minOccurs="0" name="totalOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="totalPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="truename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="wechat_id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerOrder" nillable="true" type="tns:CustomerOrder" />
+</xs:schema>

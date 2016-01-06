@@ -1,0 +1,324 @@
+﻿@{
+    ViewBag.Title = "商品销售数据";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+        <span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+        <span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+        <span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+        <span><a id="top10" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">前10</span></span></a></span>
+        <span><a id="top30" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">前30</span></span></a></span>
+    </div>
+    <div class="search" >
+        开始日期：<input id="txtStartDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        结束日期：<input id="txtEndDate" type="text" class="easyui-datebox">&nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span>
+    </div>
+</div>
+<div style="width:50%;float:left;margin-bottom:10px;"><a id="exportTable" href="#" class="easyui-linkbutton">导出excel</a></div>
+<div style="width:50%;float:left;margin-bottom:10px;"><a id="exportChart" href="#" class="easyui-linkbutton">导出excel</a></div>
+<div id="container" style="width:50%;height:500px;float:left;"></div>
+<div id="containerPie" style="width:50%;height:500px;float:left;"></div>
+<div><input type="hidden" value="保存图片到服务器" id="saveChart"  /></div>
+<div style="width:100%;float:left;margin-bottom:10px;"><a id="exportTable" href="#" class="easyui-linkbutton">导出excel</a></div>
+<table id="List"></table>
+
+<script type="text/javascript">
+
+    var startDate;
+    var endDate;
+    var pageSize = 1000;
+    var pSort = 'totalCount';
+    var pOrder = 'desc';
+    var columnChart;
+    var pieChart;
+
+    // excel导出
+    $("#exportTable").click(function () {
+        window.location = '/DataAnalysis/ExportProductSaleInfo?startDate=' + startDate + '&endDate=' + endDate + "&compareDay=" + 30;
+    });
+    $("#exportChart").click(function () {
+        window.location = '/DataAnalysis/ExportProductSaleCategoryInfo?startDate=' + startDate + '&endDate=' + endDate;
+    });
+
+    $(function () {
+        $("#saveChart").click(function () {
+            var url = '/ChartHelper/Index';
+            var svg = columnChart.getSVG();
+            $.ajax(url, {
+                data: {
+                    'type': 'image/png',
+                    'svg': svg,
+                    'filename': '测试图',
+                    'width':300
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    if(data==0){
+                        $.messageBox5s('提示', "保存成功");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("fail");
+                    //通常情况下textStatus和errorThrown只有其中一个包含信息
+                    this;   //调用本次ajax请求时传递的options参数
+                }
+            });
+        });
+    });
+
+    $(function () {
+        $('#List').datagrid({
+            //url: '@Url.Action("GetWXPagingProductSaleInfo")' + '?name=猪大排',
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'totalCount',
+            sortOrder: 'desc',
+            //idField: 'name',
+            pageSize: 10,
+            pageList: [10, 20, 30, 40, 50],
+            pagination: true,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'name', title: '商品名称', width: 120, sortable: true, align: 'right' },
+                { field: 'totalCount', title: '销售总数', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'countCR', title: '同比上月', width: 120, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                },
+                { field: 'totalPrice', title: '销售总额', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'priceCR', title: '同比上月', width: 120, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                }
+            ]],
+            onSortColumn: function (sort, order) {
+                pSort = sort;
+                pOrder = order;
+                loadChartData();
+            }
+        });
+
+        $("#txtStartDate").datebox("setValue", GetDate(30));
+        $("#btnQuery").click();
+    });
+
+
+
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        pageSize = 0;
+        GetProductInfo();
+
+    });
+
+
+
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        switch (id) {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                pageSize = 0;
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                pageSize = 0;
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                pageSize = 0;
+                break;
+            case 'top10':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 10;
+                break;
+            case 'top30':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 30;
+                break;
+        }
+        GetProductInfo();
+
+    });
+
+    function loadChartData() {
+        //商品销售信息
+        var url = '@Url.Action("GetWXProductSaleInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate,
+                'compareDay': 30,
+                'limitRowNumber': pageSize,
+                'sort': pSort,
+                'order': pOrder
+            },
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                columnChart = new Highcharts.Chart({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'column',                       //指定图表的类型，默认是折线图（line）
+                        renderTo: 'container',//目标容器
+                    },
+                    title: {
+                        text: '商品销售情况'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: data.categories  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '数量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }, {
+                        title: {
+                            text: '价格/人民币'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }],
+                    series: [{                                 //指定数据列
+                        name: '销售总数量',                          //数据列名
+                        data: data.series.countList                   //数据
+                    }, {
+                        name: '销售总额',
+                        data: data.series.priceList,
+                        yAxis: 1
+                    }],
+                    credits: {
+                        enabled: false
+                    },
+                    exporting: {
+                        width: 800
+                    }
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+
+    function GetProductInfo() {
+        $('#List').datagrid({
+            url: '@Url.Action("GetWXPagingProductSaleTableInfo")' + '?startDate=' + startDate + '&endDate=' + endDate + '&compareDay=30&limitRowNumber=' + pageSize
+        });
+
+        loadChartData();
+        loadPieChartData();
+    }
+
+    function loadPieChartData() {
+        //商品销售信息
+        var url = '@Url.Action("GetWXProductCategorySaleInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate
+            },
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var prodCategoryArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    prodCategoryArray.push([data.rows[i].name, data.rows[i].totalCount]);
+                }
+                //var oldColors = Highcharts.getOptions().colors;
+                //Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+                //    return {
+                //        radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+                //        stops: [
+                //            [0, color],
+                //            [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                //        ]
+                //    };
+                //});
+
+                $('#containerPie').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: '商品销量占比'      //指定图表标题
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            },
+                            showInLegend: true
+                        }
+                    },
+                    series: [{
+                        type:'pie',                               //指定数据列
+                        name: '销售量占比',                          //数据列名
+                        data: prodCategoryArray                   //数据
+                    }],
+                    credits: {
+                        enabled:false
+                    }
+                });
+
+                //Highcharts.getOptions().colors = oldColors;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+</script>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Server=localhost;Database=wx_data;Uid=root;Pwd=88426269;pooling=false;charset=utf8]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[wx_lottery]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from wx_lottery;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[SELECT id,joinnum,click,token,keyword,starpicurl,title,txt,sttxt,FROM_UNIXTIME(statdate,'%Y-%m-%d') as statdate,FROM_UNIXTIME(enddate,'%Y-%m-%d') as enddate,info,aginfo,endtite,endpicurl,endinfo,fist,fistnums,fistlucknums,second,type,secondnums,secondlucknums,third,thirdnums,thirdlucknums,allpeople,canrqnums,parssword,renamesn,renametel,displayjpnums,FROM_UNIXTIME(createtime,'%Y-%m-%d') as createtime,status,four,fournums,fourlucknums,five,fivenums,fivelucknums,six,sixnums,sixlucknums,zjpic,daynums,maxgetprizenum,is_need_bind,can_use_in_wx FROM wx_lottery;]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[true]]>
+  </IsUsing>
+</root>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7aac150f4f724287845bcdf1bc5ef078" Name="Diagram1" >
+        <EntityTypeShape EntityType="DB.SysException" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DB.SysLog" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="DB.SysModule" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="DB.SysModuleOperate" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="DB.SysRight" Width="1.5" PointX="6" PointY="2.625" />
+        <EntityTypeShape EntityType="DB.SysRightOperate" Width="1.5" PointX="8.25" PointY="2.875" />
+        <EntityTypeShape EntityType="DB.SysRole" Width="1.5" PointX="3.75" PointY="7.625" />
+        <EntityTypeShape EntityType="DB.SysSample" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DB.SysUser" Width="1.5" PointX="6" PointY="6.125" />
+        <EntityTypeShape EntityType="DB.wx_product" Width="1.5" PointX="13.125" PointY="17.125" />
+        <EntityTypeShape EntityType="DB.wx_product_cart" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DB.wx_product_cat" Width="1.5" PointX="10.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DB.wx_product_salegoods" Width="1.5" PointX="10.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DB.wx_service_points" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DB.ZH_DIC_PRODUCT" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DB.ZH_GOODS_TYPE" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DB.ZH_SETTLE_DEAL_MAIN" Width="1.5" PointX="8.75" PointY="13.75" />
+        <AssociationConnector Association="DB.FK_SysModule_SysModule" />
+        <AssociationConnector Association="DB.FK_SysModuleOperate_SysModule" />
+        <AssociationConnector Association="DB.FK_SysRight_SysModule" />
+        <AssociationConnector Association="DB.FK_SysRight_SysRole" />
+        <AssociationConnector Association="DB.FK_SysRightOperate_SysRight" />
+        <AssociationConnector Association="DB.SysRoleSysUser" />
+        <EntityTypeShape EntityType="DB.wx_customer_order" Width="1.5" PointX="11.375" PointY="13.75" />
+        <EntityTypeShape EntityType="DB.ZH_DAILY_GOODS_DEAL" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB.easyui_query_parameters" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="DB.univgrid" Width="1.5" PointX="15.75" PointY="8.75" />
+        <EntityTypeShape EntityType="DB.univgrid_parameter" Width="1.5" PointX="15.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DB.univgrid_parameter_setup" Width="1.5" PointX="15.75" PointY="14.75" />
+        <EntityTypeShape EntityType="DB.easyuicolumn" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DB.highchart" Width="1.5" PointX="3.375" PointY="14.75" />
+        <EntityTypeShape EntityType="DB.highchart_column" Width="1.5" PointX="5.375" PointY="14.75" />
+        <EntityTypeShape EntityType="DB.easyuigrid" Width="1.5" PointX="15.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

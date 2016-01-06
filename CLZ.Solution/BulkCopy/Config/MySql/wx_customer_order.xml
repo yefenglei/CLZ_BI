@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Server=localhost;Database=wx_data;Uid=root;Pwd=88426269;pooling=false;charset=utf8]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[wx_customer_order]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from wx_customer_order;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[select truename,wecha_id as wechat_id,COUNT(orderid) as totalOrder,FROM_UNIXTIME(time,'%Y-%m-%d') as time,sum(total) as totalCount,sum(price) as totalPrice from wx_product_cart group by truename,wecha_id,FROM_UNIXTIME(time,'%Y-%m-%d');]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[true]]>
+  </IsUsing>
+</root>

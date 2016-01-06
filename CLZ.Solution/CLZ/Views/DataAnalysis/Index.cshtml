@@ -1,0 +1,213 @@
+﻿@model IEnumerable<CLZ.CLZService.sp_wx_getOrderInfo_Result>
+@using CLZ.Common;
+@using CLZ.Core;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="http://cdn.hcharts.cn/highcharts/modules/exporting.js" type="text/javascript"></script> 
+<style type="text/css">
+    .search {
+        float:right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+    <span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+    <span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+    <span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+    </div>
+    <div class="search">开始日期：<input id="txtStartDate" type="text" class="easyui-datebox" > &nbsp;  &nbsp;  &nbsp;  &nbsp; 结束日期：<input id="txtEndDate" type="text" class="easyui-datebox"><span ><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span></div>
+</div>
+<div id="container" style="min-width:800px;height:400px"></div>
+
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+<div style="width:100%;float:left;margin-bottom:10px;"><a id="exportOrder" href="#" class="easyui-linkbutton">导出excel</a></div>
+<table id="List"></table>
+<script type="text/javascript">
+
+    //制保留2位小数，如：2，会在2后面补上00.即2.00  
+    function toDecimal2(x) {
+        var f = parseFloat(x);
+        if (isNaN(f)) {
+            return '?';
+        }
+        var f = Math.round(x * 100) / 100;
+        var s = f.toString();
+        var rs = s.indexOf('.');
+        if (rs < 0) {
+            rs = s.length;
+            s += '.';
+        }
+        while (s.length <= rs + 2) {
+            s += '0';
+        }
+        return s;
+    }
+    $(function () {
+        $('#List').datagrid({
+            //url: '@Url.Action("GetWXChartOrderTableInfo")',
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'time',
+            sortOrder: 'desc',
+            //idField: 'Id',
+            pageSize: 20,
+            pageList: [10, 20, 30, 40, 50],
+            pagination: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'time', title: '时间', width: 120, sortable: true, align: 'right' },
+                { field: 'orderCount', title: '订单数量', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'orderCR', title: '同比增长率', width: 120, sortable: true,align:'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value)+'%';
+                    }
+                },
+                { field: 'sale', title: '销售额', width: 120, sortable: true, align: 'right' },
+                {
+                    field: 'saleCR', title: '同比增长率', width: 250, sortable: true, align: 'right',
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value) + '%';
+                    }
+                }
+            ]]
+        });
+
+
+        $("#txtStartDate").datebox("setValue", GetDate(30));
+    });
+</script>
+
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+    var compareDay = 1;
+
+    // excel导出
+    $("#exportOrder").click(function () {
+        window.location = '/DataAnalysis/ExportOrderInfo?startDate=' + startDate + '&endDate=' + endDate + "&compareDay=" + compareDay
+    });
+
+
+    $(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null||endDate =="") {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+    });
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null) {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+
+    });
+
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        switch (id)
+        {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                break;
+        }
+        GetChartOrderInfo();
+
+    });
+
+
+    function GetChartOrderInfo() {
+        $('#List').datagrid({url: '@Url.Action("GetWXChartOrderTableInfo")'+"?startDate="+ startDate+"&endDate="+ endDate+ "&compareDay="+ compareDay+""});
+
+        $.post('@Url.Action("GetChartOrderInfo")', { "startDate": startDate, "endDate": endDate, "compareDay": compareDay },
+            function (data) {
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'column'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '订单统计'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: data.categories  //指定x轴分组
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '价格/人民币'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }, {
+                        title: {
+                            text: '数量/个'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        opposite: true
+                    }],
+                    series: [{                                 //指定数据列
+                        name: '订单数量',                          //数据列名
+                        yAxis:1,
+                        data: data.series.orderList                   //数据
+                    }, {
+                        name: '销售额',
+                        yAxis:0,
+                        data: data.series.saleList
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            }, "json");
+    }
+
+    
+    function GetDate(daySpan) {
+        var today = new Date();
+        var targetday_milliseconds = today.getTime() - 1000 * 60 * 60 * 24 * daySpan;
+        var targetday = new Date();
+        targetday.setTime(targetday_milliseconds);
+
+        var strYear = targetday.getFullYear();
+        var strDay = targetday.getDate();
+        var strMonth = targetday.getMonth() + 1;
+        if (strMonth < 10) {
+            strMonth = "0" + strMonth;
+        }
+        var strTargetday = strYear + "/" + strMonth + "/" + strDay;
+        return strTargetday;
+    }
+
+</script>

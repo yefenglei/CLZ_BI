@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AnalysisConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+  <SonarConfigDir>D:\workspace\CLZ_MIS\CLZ.Solution\.sonarqube\conf</SonarConfigDir>
+  <SonarOutputDir>D:\workspace\CLZ_MIS\CLZ.Solution\.sonarqube\out</SonarOutputDir>
+  <SonarBinDir>D:\workspace\CLZ_MIS\CLZ.Solution\.sonarqube\bin</SonarBinDir>
+  <SonarQubeHostUrl>http://localhost:9000</SonarQubeHostUrl>
+  <SonarProjectKey>xdclz</SonarProjectKey>
+  <SonarProjectVersion>1.0.1</SonarProjectVersion>
+  <SonarProjectName>clz</SonarProjectName>
+  <AdditionalSettings>
+    <AnalysisSetting Id="BuildUri" Inherited="false" />
+    <AnalysisSetting Id="TfsUri" Inherited="false" />
+    <AnalysisSetting Id="sonar.profile.java" Value="Sonar way" Inherited="true" />
+    <AnalysisSetting Id="sonar.profile.cs" Value="Sonar way" Inherited="true" />
+    <AnalysisSetting Id="sonar.permission.template.default" Value="default_template" Inherited="true" />
+    <AnalysisSetting Id="sonar.core.id" Value="20150902075457" Inherited="true" />
+    <AnalysisSetting Id="sonar.core.version" Value="4.5.5" Inherited="true" />
+    <AnalysisSetting Id="sonar.core.startTime" Value="2015/9/2 7:54:57" Inherited="true" />
+    <AnalysisSetting Id="sonar.cs.msbuild.testProjectPattern" Value=".*Test.*" Inherited="true" />
+    <AnalysisSetting Id="sonar.projectKey" Value="xdclz" Inherited="false" />
+    <AnalysisSetting Id="sonar.projectName" Value="clz" Inherited="false" />
+    <AnalysisSetting Id="sonar.projectVersion" Value="1.0.1" Inherited="false" />
+    <AnalysisSetting Id="sonar.cs.vscoveragexml.reportsPaths" Value="D:\workspace\CLZ_MIS\CLZ.Solution\VisualStudio.coveragexml" Inherited="false" />
+    <AnalysisSetting Id="sonar.host.url" Value="http://localhost:9000" Inherited="false" />
+    <AnalysisSetting Id="sonar.login" Value="admin" Inherited="false" />
+    <AnalysisSetting Id="sonar.password" Value="admin" Inherited="false" />
+    <AnalysisSetting Id="sonar.jdbc.url" Value="jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8" Inherited="false" />
+    <AnalysisSetting Id="sonar.jdbc.username" Value="root" Inherited="false" />
+    <AnalysisSetting Id="sonar.jdbc.password" Value="88426269" Inherited="false" />
+  </AdditionalSettings>
+</AnalysisConfig>

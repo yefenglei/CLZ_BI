@@ -1,0 +1,72 @@
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.0"
+
+D:\workspace\CLZ_MIS\CLZ.Solution>msbuild CLZ.Solution.sln /p:Configuration=Debu
+g /p:Platform="Any CPU"
+
+MSBuild.SonarQube.Runner.exe end
+
+单元测试
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.0" /d:sonar.cs.nunit.reportsPaths="%CD%\NUnitResults.xml"
+
+msbuild
+
+"D:\tools\NUnit2.6.4\bin\nunit-console.exe" /result=NUnitResults.xml "D:\workspace\CLZ_MIS\CLZ.Solution\CLZ.NUnitTest\bin\Debug\CLZ.NUnitTest.dll"
+
+MSBuild.SonarQube.Runner.exe end
+
+
+单元测试+代码覆盖率
+
+
+
+MSBuild.SonarQube.Runner.exe end
+
+代码覆盖率
+
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.0" /d:sonar.cs.ncover3.reportsPaths="%CD%\coverage.nccov"
+
+msbuild CLZ.Solution.sln /p:Configuration=Debug /p:Platform="Any CPU"
+
+"%ProgramFiles(x86)%\NCover\NCover.Console.exe" "D:\tools\NUnit2.6.4\bin\nunit-console-x86.exe" "CLZ.NUnitTest\bin\Debug\CLZ.NUnitTest.dll" //x "%CD%\coverage.nccov"
+
+MSBuild.SonarQube.Runner.exe end
+
+
+VSTest  单元测试
+
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.0" /d:sonar.cs.vstest.reportsPaths="%CD%\TestResults\*.trx"
+
+msbuild CLZ.Solution.sln /p:Configuration=Debug /p:Platform="Any CPU"
+
+"%VSINSTALLDIR%\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" /Logger:trx "CLZ.UnitTest\bin\Debug\CLZ.UnitTest.dll"
+
+MSBuild.SonarQube.Runner.exe end
+
+
+MSTest 单元测试
+
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.1" /d:sonar.cs.vstest.reportsPaths="%CD%\MSTestResults.trx"
+
+msbuild CLZ.Solution.sln /p:Configuration=Debug /p:Platform="Any CPU"
+
+"%VSINSTALLDIR%\Common7\IDE\MSTest.exe" /testcontainer:"CLZ.UnitTest\bin\Debug\CLZ.UnitTest.dll" /resultsfile:MSTestResults.trx
+
+MSBuild.SonarQube.Runner.exe end
+
+
+Visual Studio Code Coverage  代码覆盖率
+
+MSBuild.SonarQube.Runner.exe begin /k:"xdclz" /n:"clz" /v:"1.0.1" /d:sonar.cs.vscoveragexml.reportsPaths="%CD%\VisualStudio.coveragexml" 
+
+msbuild CLZ.Solution.sln /p:Configuration=Debug /p:Platform="Any CPU"
+
+"%VSINSTALLDIR%\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" collect /output:"%CD%\VisualStudio.coverage" "%VSINSTALLDIR%\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" "CLZ.UnitTest\bin\Debug\CLZ.UnitTest.dll"
+
+"%VSINSTALLDIR%\Team Tools\Dynamic Code Coverage Tools\CodeCoverage.exe" analyze /output:"%CD%\VisualStudio.coveragexml" "%CD%\VisualStudio.coverage"
+
+MSBuild.SonarQube.Runner.exe end
+
+
+
+
+%M2_HOME%\bin

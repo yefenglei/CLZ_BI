@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <SourceConnectionString>
+    <![CDATA[Server=localhost;Database=wx_data;Uid=root;Pwd=88426269;pooling=false;charset=utf8]]>
+  </SourceConnectionString>
+  <TargetConnectionString>
+    <![CDATA[Data Source = PC201506031349;Initial Catalog = CLZ;Integrated Security = SSPI;]]>
+  </TargetConnectionString>
+  <TargetTableName>
+    <![CDATA[wx_wechat_other_platform_binding]]>
+  </TargetTableName>
+  <BeforeQuery>
+    <![CDATA[delete from wx_wechat_other_platform_binding;]]>
+  </BeforeQuery>
+  <SelectQuery>
+    <![CDATA[SELECT id,token,wechat_id,pt_user_name,m_id,binding_state,FROM_UNIXTIME(binding_date,'%Y-%m-%d') as binding_date,FROM_UNIXTIME(unbinding_date,'%Y-%m-%d') as unbinding_date FROM wx_wechat_other_platform_binding;]]>
+  </SelectQuery>
+  <AfterQuery>
+    <![CDATA[]]>
+  </AfterQuery>
+  <IsUsing>
+    <![CDATA[true]]>
+  </IsUsing>
+</root>

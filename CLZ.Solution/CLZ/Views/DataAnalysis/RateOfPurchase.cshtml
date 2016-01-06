@@ -1,0 +1,235 @@
+﻿@{
+    ViewBag.Title = "购买率分析";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+        <span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+        <span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+        <span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+    </div>
+    <div class="search" style="">
+        开始日期：<input id="txtStartDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        结束日期：<input id="txtEndDate" type="text" class="easyui-datebox">&nbsp;  &nbsp;  &nbsp;  &nbsp;
+        <span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span>
+    </div>
+</div>
+<div id="container" style="min-width:800px;height:400px"></div>
+<table id="List"></table>
+
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+    var customerName;
+
+    $(function () {
+        $("#txtStartDate").datebox("setValue", GetDate(30));
+        //$("#btnQuery").click();
+    });
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        GetCustomerInfo();
+    });
+
+
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        customerName = "";
+        switch (id) {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                break;
+            case 'top10':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 10;
+                break;
+            case 'top30':
+                startDate = $('#txtStartDate').datebox('getValue');
+                endDate = $("#txtEndDate").datebox('getValue');
+                pageSize = 30;
+                break;
+        }
+        GetCustomerInfo();
+
+    });
+
+    function GetCustomerInfoByBuyTimes(buyTimes) {
+        $('#List').datagrid({
+            url: '@Url.Action("GetWXCustomerInfoByBuyTimes")' + '?startDate=' + startDate + '&endDate=' + endDate + '&buyTimes=' + buyTimes,
+            width: $(window).width() - 10,
+            methord: 'post',
+            fitColumns: true,
+            sortName: 'totalOrder',
+            sortOrder: 'desc',
+            remoteSort: false,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'truename', title: '姓名', width: 120, sortable: true },
+                { field: 'totalOrder', title: '下单总数', width: 120, sortable: true },
+                { field: 'totalCount', title: '购买商品数', width: 120, sortable: true},
+                { field: 'totalPrice', title: '消费总额', width: 120, sortable: true}
+            ]],
+            onClickCell: function (rowIndex, field, value) {
+                if (field == "truename") {
+                    window.parent.addTab(value, '/DataAnalysis/CustomerInfo?startDate=' + startDate + '&endDate=' + endDate+'&customerName=' + value, '');
+                }
+            }
+        });
+    }
+
+    function GetCustomerInfo() {
+        $('#List').datagrid({
+            url: '@Url.Action("GetWXCustomerPurchaseRateInfo")' + '?startDate=' + startDate + '&endDate=' + endDate ,
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'buyTimes',
+            sortOrder: 'asc',
+            remoteSort: false,
+            //idField: 'truename',
+            //pageSize: 20,
+            //pageList: [10, 20, 30, 40, 50],
+            //pagination: true,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'buyTimes', title: '购买次数', width: 120, sortable: true },
+                {
+                    field: 'rate', title: '占比', width: 120, sortable: true,
+                    formatter: function (value, row, index) {
+                        return toDecimal2(value*100.0) + '%';
+                    }
+                }
+            ]]
+        });
+
+
+        //获取客户信息
+        var url = '@Url.Action("GetWXCustomerPurchaseRateInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var buyTimesArray = [];
+                var rateArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    buyTimesArray.push(data.rows[i].buyTimes);
+                    var rate = toDecimal2(data.rows[i].rate * 100.0);
+                    rateArray.push(parseFloat(rate));
+                }
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'column'                         //指定图表的类型，默认是折线图（line）
+                    },
+                    title: {
+                        text: '购买率'      //指定图表标题
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            var s = '<b>' + this.x + '次购买</b>';
+
+                            $.each(this.points, function () {
+                                s += '<br/>' + this.series.name + ': ' +
+                                    this.y + '%';
+                            });
+
+                            return s;
+                        },
+                        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+                        valueSuffix: ' %',
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        categories: buyTimesArray,  //指定x轴分组
+                        labels: {
+                            formatter: function () {
+                                return this.value + '次购买';
+                            }
+                        }
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '占比/%'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                        labels: {
+                            format: '{value}%'
+                        }
+                    }],
+                    plotOptions: {
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        var bt = this.category
+                                        GetCustomerInfoByBuyTimes(bt);
+                                    }
+                                }
+                            }
+                        },
+                        column: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: true
+                        }
+                    },
+                    series: [
+                    {
+                        name: '占比',
+                        yAxis: 0,
+                        data: rateArray
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+</script>
+
+

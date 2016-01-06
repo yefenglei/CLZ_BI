@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CLZ.Model.ZHService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLZ.Model.ZHService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfZHProductModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ZHProductModel" nillable="true" type="tns:ZHProductModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfZHProductModel" nillable="true" type="tns:ArrayOfZHProductModel" />
+  <xs:complexType name="ZHProductModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PRODUCT_NAME" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_SN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PRODUCT_TOTAL" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ZHProductModel" nillable="true" type="tns:ZHProductModel" />
+</xs:schema>

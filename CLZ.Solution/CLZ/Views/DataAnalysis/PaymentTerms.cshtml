@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "PaymentTerms";
+    Layout = "~/Views/Shared/_Index_Layout.cshtml";
+}
+<script src="~/Scripts/Highcharts415/js/highcharts.js"></script>
+<script src="~/Scripts/Highcharts415/js/modules/exporting.js"></script>
+<script src="~/Scripts/Highcharts415/js/highcharts-zh_CN.js"></script>
+<script src="~/Scripts/chart.plus.js"></script>
+<style type="text/css">
+    .search {
+        float: right;
+    }
+</style>
+
+<div class="mvctool">
+    <div id="searchTimeSpan" style="float:left;">
+        <span><a id="today" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">今天</span></span></a></span>
+        <span><a id="7day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近7天</span></span></a></span>
+        <span><a id="30day" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">最近30天</span></span></a></span>
+    </div>
+    <div class="search">开始日期：<input id="txtStartDate" type="text" class="easyui-datebox"> &nbsp;  &nbsp;  &nbsp;  &nbsp; 结束日期：<input id="txtEndDate" type="text" class="easyui-datebox"><span><a id="btnQuery" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text icon-search" style="padding-left: 20px;">查询</span></span></a></span></div>
+</div>
+<div id="container" style="width:50%;height:400px;float:left;"></div>
+<div id="containerPie" style="width:50%;height:400px;float:left;"></div>
+
+<table id="List"></table>
+<div id="modalwindow" class="easyui-window" data-options="modal:true,closed:true,minimizable:false,shadow:false"></div>
+
+<script type="text/javascript">
+    var startDate;
+    var endDate;
+    var payTypes="alipay,wcpay";
+
+
+    $(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null || endDate == "") {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+
+    });
+
+    $("#btnQuery").click(function () {
+        startDate = $('#txtStartDate').datebox('getValue');
+        endDate = $("#txtEndDate").datebox('getValue');
+        var now = new Date();
+        //如果查询条件为空默认查询全部
+        if (endDate == null) {
+            endDate = now.toLocaleDateString();
+        }
+        GetChartOrderInfo();
+
+    });
+    $("#searchTimeSpan a").click(function () {
+        var id = this.id;
+        var now = new Date();
+        switch (id) {
+            case 'today':
+                startDate = now.toLocaleDateString();
+                endDate = now.toLocaleDateString();
+                break;
+            case '7day':
+                startDate = GetDate(7);
+                endDate = now.toLocaleDateString();
+                break;
+            case '30day':
+                startDate = GetDate(30);
+                endDate = now.toLocaleDateString();
+                break;
+        }
+        GetChartOrderInfo();
+
+    });
+
+
+    function GetChartOrderInfo() {
+        $.post('@Url.Action("GetWXPaymentTermsInfo")', { "startDate": startDate, "endDate": endDate, "payTypes": payTypes },
+            function (data) {
+                //准备数据
+                var aliArray = [];
+                var wcArray = [];
+                var tmpDateArray = [];
+                for (var i = 0; i < data.rows[0].length; i++) {
+                    tmpDateArray = data.rows[0][i].time.split('-');
+                    aliArray.push([(Date.UTC(parseInt(tmpDateArray[0]), parseInt(tmpDateArray[1]) - 1, parseInt(tmpDateArray[2]) + 1)), data.rows[0][i].count]);
+                }
+                for (var i = 0; i < data.rows[1].length; i++) {
+                    tmpDateArray = data.rows[1][i].time.split('-');
+                    wcArray.push([(Date.UTC(parseInt(tmpDateArray[0]), parseInt(tmpDateArray[1]) - 1, parseInt(tmpDateArray[2]) + 1)), data.rows[1][i].count]);
+                }
+
+                $('#container').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        type: 'line',                         //指定图表的类型，默认是折线图（line）
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: '支付类型占比'      //指定图表标题
+                    },
+                    tooltip: {
+                        crosshairs: true,
+                        shared: true
+                    },
+                    xAxis: {
+                        //categories: timeArray  //指定x轴分组
+                        type: 'datetime',
+                        dateTimeLabelFormats: { // don't display the dummy year
+                            day: '%Y年%m月%e日'
+                        },
+                        minRange: 7 * 24 * 3600000 // seven days
+                    },
+                    yAxis: [{
+                        title: {
+                            text: '占比/%'                  //指定y轴的标题
+                        },
+                        min: 0,
+                        startOnTick: false,
+                    }],
+                    //plotOptions: {
+                    //    series: {
+                    //        cursor: 'pointer',
+                    //        point: {
+                    //            events: {
+                    //                click: function () {
+                    //                    //alert('Category: ' + this.category + ', value: ' + this.y);
+                    //                    //addressId = this.category
+                    //                    //loadDetailChart();
+                    //                }
+                    //            }
+                    //        }
+                    //    },
+                    //    column: {
+                    //        dataLabels: {
+                    //            enabled: true
+                    //        },
+                    //        enableMouseTracking: true
+                    //    }
+                    //},
+                    series: [{                                 //指定数据列
+                        name: '微信',                          //数据列名
+                        data: wcArray,                  //数据
+                        yAxis: 0,
+                    }, {
+                        name: '支付宝',
+                        yAxis: 0,
+                        data: aliArray
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+            }, "json");
+
+        loadPieChartData();
+    }
+
+
+    // 获取饼图信息
+    function loadPieChartData() {
+        //商品销售信息
+        var url = '@Url.Action("GetWXPaymentTermsPercentageInfo")';
+        $.ajax(url, {
+            data: {
+                'startDate': startDate,
+                'endDate': endDate
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                var payTypeArray = [];
+                var length = Number(data.total);
+                for (var i = 0; i < length; i++) {
+                    payTypeArray.push([data.rows[i].payType, data.rows[i].count]);
+                }
+
+                $('#containerPie').highcharts({                   //图表展示容器，与div的id保持一致
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: '支付类型占比'      //指定图表标题
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            },
+                            showInLegend: true
+                        },
+                        series: {
+                            cursor: 'pointer',
+                            point: {
+                                events: {
+                                    click: function () {
+                                        loadDetailTable(this.name);
+                                        $("#List").show();
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'pie',                               //指定数据列
+                        name: '支付占比',                          //数据列名
+                        data: payTypeArray                   //数据
+
+                    }],
+                    credits: {
+                        enabled: false
+                    }
+                });
+
+                //Highcharts.getOptions().colors = oldColors;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("fail");
+                //通常情况下textStatus和errorThrown只有其中一个包含信息
+                this;   //调用本次ajax请求时传递的options参数
+            }
+        });
+    }
+
+    function loadDetailTable(payType) {
+        $('#List').datagrid({
+            url: '@Url.Action("GetWXPaymentTermsInfo")' + '?startDate=' + startDate + '&endDate=' + endDate + "&payTypes=" + payType,
+            width: $(window).width() - 10,
+            methord: 'post',
+            //height: $(window).height() - 35,
+            fitColumns: true,
+            sortName: 'time',
+            sortOrder: 'desc',
+            remoteSort: false,
+            //idField: 'truename',
+            //pageSize: 20,
+            //pageList: [10, 20, 30, 40, 50],
+            //pagination: true,
+            showFooter: true,
+            striped: true, //奇偶行是否区分
+            singleSelect: true,//单选模式
+            rownumbers: true,//行号
+            columns: [[
+                { field: 'time', title: '时间', width: 120, sortable: true },
+                { field: 'pay_type', title: '支付方式', width: 120, sortable: true },
+                { field: 'count', title: '次数', width: 120, sortable: true }
+            ]]
+        });
+    }
+
+
+</script>
+

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ZHSettleService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model" />
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CLZ.Common" />
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.common" />
+      <xsd:import schemaLocation="http://localhost:7632/ZHSettleService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/CLZ.Model.ZHService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IZHSettleService_getAllZH_SETTLE_DEAL_MAIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_SETTLE_DEAL_MAIN" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getAllZH_SETTLE_DEAL_MAIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_SETTLE_DEAL_MAINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_SETTLE_DEAL_MAIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_SETTLE_DEAL_MAIN" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_SETTLE_DEAL_MAIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_SETTLE_DEAL_MAINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_SETTLE_DEAL_MAINById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_SETTLE_DEAL_MAINById" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_SETTLE_DEAL_MAINById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_SETTLE_DEAL_MAINByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_SETTLE_DEAL_MAIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_SETTLE_DEAL_MAIN" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_SETTLE_DEAL_MAIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_SETTLE_DEAL_MAINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_SETTLE_DEAL_MAIN_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_SETTLE_DEAL_MAIN" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_SETTLE_DEAL_MAIN_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_SETTLE_DEAL_MAINResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_SETTLE_DEAL_MAINList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_SETTLE_DEAL_MAINList" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_SETTLE_DEAL_MAINList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_SETTLE_DEAL_MAINListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetMainSettleDealInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainSettleDealInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetMainSettleDealInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMainSettleDealInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getAllZH_DAILY_GOODS_DEAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_DAILY_GOODS_DEAL" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getAllZH_DAILY_GOODS_DEAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_DAILY_GOODS_DEALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_DAILY_GOODS_DEAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_DAILY_GOODS_DEAL" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_DAILY_GOODS_DEAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_DAILY_GOODS_DEALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_DAILY_GOODS_DEALById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_DAILY_GOODS_DEALById" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_DAILY_GOODS_DEALById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_DAILY_GOODS_DEALByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_DAILY_GOODS_DEAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_DAILY_GOODS_DEAL" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_DAILY_GOODS_DEAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_DAILY_GOODS_DEALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_DAILY_GOODS_DEAL_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_DAILY_GOODS_DEAL" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_DAILY_GOODS_DEAL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_DAILY_GOODS_DEALResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALList" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALPagingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALPagingInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DAILY_GOODS_DEALPagingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DAILY_GOODS_DEALPagingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_GOODS_DEAL_CategoryInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_GOODS_DEAL_CategoryInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_GOODS_DEAL_CategoryInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_GOODS_DEAL_CategoryInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_Single_GOODS_DEALInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_Single_GOODS_DEALInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_Single_GOODS_DEALInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_Single_GOODS_DEALInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getAllZH_DIC_PRODUCT_InputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_DIC_PRODUCT" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getAllZH_DIC_PRODUCT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getAllZH_DIC_PRODUCTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_DIC_PRODUCT_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_DIC_PRODUCT" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_AddZH_DIC_PRODUCT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddZH_DIC_PRODUCTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_DIC_PRODUCTById_InputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_DIC_PRODUCTById" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_getZH_DIC_PRODUCTById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getZH_DIC_PRODUCTByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_DIC_PRODUCT_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_DIC_PRODUCT" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_EditZH_DIC_PRODUCT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditZH_DIC_PRODUCTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_DIC_PRODUCT_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_DIC_PRODUCT" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_DeleteZH_DIC_PRODUCT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteZH_DIC_PRODUCTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DIC_PRODUCTList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DIC_PRODUCTList" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DIC_PRODUCTList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DIC_PRODUCTListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DIC_PRODUCTPagingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DIC_PRODUCTPagingInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetZH_DIC_PRODUCTPagingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetZH_DIC_PRODUCTPagingInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetPRODUCTOrderByCountPagingInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPRODUCTOrderByCountPagingInfo" />
+  </wsdl:message>
+  <wsdl:message name="IZHSettleService_GetPRODUCTOrderByCountPagingInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPRODUCTOrderByCountPagingInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IZHSettleService">
+    <wsdl:operation name="getAllZH_SETTLE_DEAL_MAIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_SETTLE_DEAL_MAIN" message="tns:IZHSettleService_getAllZH_SETTLE_DEAL_MAIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_SETTLE_DEAL_MAINResponse" message="tns:IZHSettleService_getAllZH_SETTLE_DEAL_MAIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_SETTLE_DEAL_MAIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_SETTLE_DEAL_MAIN" message="tns:IZHSettleService_AddZH_SETTLE_DEAL_MAIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_SETTLE_DEAL_MAINResponse" message="tns:IZHSettleService_AddZH_SETTLE_DEAL_MAIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getZH_SETTLE_DEAL_MAINById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getZH_SETTLE_DEAL_MAINById" message="tns:IZHSettleService_getZH_SETTLE_DEAL_MAINById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getZH_SETTLE_DEAL_MAINByIdResponse" message="tns:IZHSettleService_getZH_SETTLE_DEAL_MAINById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_SETTLE_DEAL_MAIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_SETTLE_DEAL_MAIN" message="tns:IZHSettleService_EditZH_SETTLE_DEAL_MAIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_SETTLE_DEAL_MAINResponse" message="tns:IZHSettleService_EditZH_SETTLE_DEAL_MAIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_SETTLE_DEAL_MAIN">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_SETTLE_DEAL_MAIN" message="tns:IZHSettleService_DeleteZH_SETTLE_DEAL_MAIN_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_SETTLE_DEAL_MAINResponse" message="tns:IZHSettleService_DeleteZH_SETTLE_DEAL_MAIN_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_SETTLE_DEAL_MAINList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_SETTLE_DEAL_MAINList" message="tns:IZHSettleService_GetZH_SETTLE_DEAL_MAINList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_SETTLE_DEAL_MAINListResponse" message="tns:IZHSettleService_GetZH_SETTLE_DEAL_MAINList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMainSettleDealInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetMainSettleDealInfo" message="tns:IZHSettleService_GetMainSettleDealInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetMainSettleDealInfoResponse" message="tns:IZHSettleService_GetMainSettleDealInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllZH_DAILY_GOODS_DEAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_DAILY_GOODS_DEAL" message="tns:IZHSettleService_getAllZH_DAILY_GOODS_DEAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_DAILY_GOODS_DEALResponse" message="tns:IZHSettleService_getAllZH_DAILY_GOODS_DEAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_DAILY_GOODS_DEAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_DAILY_GOODS_DEAL" message="tns:IZHSettleService_AddZH_DAILY_GOODS_DEAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_DAILY_GOODS_DEALResponse" message="tns:IZHSettleService_AddZH_DAILY_GOODS_DEAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getZH_DAILY_GOODS_DEALById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getZH_DAILY_GOODS_DEALById" message="tns:IZHSettleService_getZH_DAILY_GOODS_DEALById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getZH_DAILY_GOODS_DEALByIdResponse" message="tns:IZHSettleService_getZH_DAILY_GOODS_DEALById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_DAILY_GOODS_DEAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_DAILY_GOODS_DEAL" message="tns:IZHSettleService_EditZH_DAILY_GOODS_DEAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_DAILY_GOODS_DEALResponse" message="tns:IZHSettleService_EditZH_DAILY_GOODS_DEAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_DAILY_GOODS_DEAL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_DAILY_GOODS_DEAL" message="tns:IZHSettleService_DeleteZH_DAILY_GOODS_DEAL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_DAILY_GOODS_DEALResponse" message="tns:IZHSettleService_DeleteZH_DAILY_GOODS_DEAL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALList" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALListResponse" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALInfo" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALInfoResponse" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALPagingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALPagingInfo" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALPagingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALPagingInfoResponse" message="tns:IZHSettleService_GetZH_DAILY_GOODS_DEALPagingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_GOODS_DEAL_CategoryInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_GOODS_DEAL_CategoryInfo" message="tns:IZHSettleService_GetZH_GOODS_DEAL_CategoryInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_GOODS_DEAL_CategoryInfoResponse" message="tns:IZHSettleService_GetZH_GOODS_DEAL_CategoryInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_Single_GOODS_DEALInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_Single_GOODS_DEALInfo" message="tns:IZHSettleService_GetZH_Single_GOODS_DEALInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_Single_GOODS_DEALInfoResponse" message="tns:IZHSettleService_GetZH_Single_GOODS_DEALInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getAllZH_DIC_PRODUCT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_DIC_PRODUCT" message="tns:IZHSettleService_getAllZH_DIC_PRODUCT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getAllZH_DIC_PRODUCTResponse" message="tns:IZHSettleService_getAllZH_DIC_PRODUCT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_DIC_PRODUCT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_DIC_PRODUCT" message="tns:IZHSettleService_AddZH_DIC_PRODUCT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/AddZH_DIC_PRODUCTResponse" message="tns:IZHSettleService_AddZH_DIC_PRODUCT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getZH_DIC_PRODUCTById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/getZH_DIC_PRODUCTById" message="tns:IZHSettleService_getZH_DIC_PRODUCTById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/getZH_DIC_PRODUCTByIdResponse" message="tns:IZHSettleService_getZH_DIC_PRODUCTById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_DIC_PRODUCT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_DIC_PRODUCT" message="tns:IZHSettleService_EditZH_DIC_PRODUCT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/EditZH_DIC_PRODUCTResponse" message="tns:IZHSettleService_EditZH_DIC_PRODUCT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_DIC_PRODUCT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_DIC_PRODUCT" message="tns:IZHSettleService_DeleteZH_DIC_PRODUCT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/DeleteZH_DIC_PRODUCTResponse" message="tns:IZHSettleService_DeleteZH_DIC_PRODUCT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DIC_PRODUCTList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTList" message="tns:IZHSettleService_GetZH_DIC_PRODUCTList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTListResponse" message="tns:IZHSettleService_GetZH_DIC_PRODUCTList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DIC_PRODUCTPagingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTPagingInfo" message="tns:IZHSettleService_GetZH_DIC_PRODUCTPagingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTPagingInfoResponse" message="tns:IZHSettleService_GetZH_DIC_PRODUCTPagingInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPRODUCTOrderByCountPagingInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IZHSettleService/GetPRODUCTOrderByCountPagingInfo" message="tns:IZHSettleService_GetPRODUCTOrderByCountPagingInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IZHSettleService/GetPRODUCTOrderByCountPagingInfoResponse" message="tns:IZHSettleService_GetPRODUCTOrderByCountPagingInfo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IZHSettleService" type="tns:IZHSettleService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAllZH_SETTLE_DEAL_MAIN">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getAllZH_SETTLE_DEAL_MAIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_SETTLE_DEAL_MAIN">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/AddZH_SETTLE_DEAL_MAIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getZH_SETTLE_DEAL_MAINById">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getZH_SETTLE_DEAL_MAINById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_SETTLE_DEAL_MAIN">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/EditZH_SETTLE_DEAL_MAIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_SETTLE_DEAL_MAIN">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/DeleteZH_SETTLE_DEAL_MAIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_SETTLE_DEAL_MAINList">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_SETTLE_DEAL_MAINList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMainSettleDealInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetMainSettleDealInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllZH_DAILY_GOODS_DEAL">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getAllZH_DAILY_GOODS_DEAL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_DAILY_GOODS_DEAL">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/AddZH_DAILY_GOODS_DEAL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getZH_DAILY_GOODS_DEALById">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getZH_DAILY_GOODS_DEALById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_DAILY_GOODS_DEAL">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/EditZH_DAILY_GOODS_DEAL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_DAILY_GOODS_DEAL">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/DeleteZH_DAILY_GOODS_DEAL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALList">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DAILY_GOODS_DEALPagingInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_DAILY_GOODS_DEALPagingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_GOODS_DEAL_CategoryInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_GOODS_DEAL_CategoryInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_Single_GOODS_DEALInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_Single_GOODS_DEALInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllZH_DIC_PRODUCT">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getAllZH_DIC_PRODUCT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddZH_DIC_PRODUCT">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/AddZH_DIC_PRODUCT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getZH_DIC_PRODUCTById">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/getZH_DIC_PRODUCTById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditZH_DIC_PRODUCT">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/EditZH_DIC_PRODUCT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteZH_DIC_PRODUCT">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/DeleteZH_DIC_PRODUCT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DIC_PRODUCTList">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetZH_DIC_PRODUCTPagingInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetZH_DIC_PRODUCTPagingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPRODUCTOrderByCountPagingInfo">
+      <soap:operation soapAction="http://tempuri.org/IZHSettleService/GetPRODUCTOrderByCountPagingInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ZHSettleService">
+    <wsdl:port name="BasicHttpBinding_IZHSettleService" binding="tns:BasicHttpBinding_IZHSettleService">
+      <soap:address location="http://localhost:7632/ZHSettleService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
